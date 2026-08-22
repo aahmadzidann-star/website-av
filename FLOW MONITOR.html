@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Flow Monitor Dashboard</title>
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@400;600;700&display=swap" rel="stylesheet"/>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-zoom/2.0.1/chartjs-plugin-zoom.min.js"></script>
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+    import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyCED4oHVcDWvE1OSOvciuagdAfKZMVBDqw",
+      authDomain: "matelab-14049.firebaseapp.com",
+      databaseURL: "https://matelab-14049-default-rtdb.asia-southeast1.firebasedatabase.app",
+      projectId: "matelab-14049",
+      storageBucket: "matelab-14049.firebasestorage.app",
+      messagingSenderId: "609257432183",
+      appId: "1:609257432183:web:068ca91b43e103cfa85272"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getDatabase(app);
+
+    const labels = [];
+    const flowData = [];
+
+    const ctx = document.getElementById('flowChart').getContext('2d');
+    const chart = new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels,
+        datasets: [{
+          label: 'Flow Rate (L/min)',
+          data: flowData,
+          borderColor: '#00ffe7',
+          backgroundColor: 'rgba(0,255,231,0.07)',
+          borderWidth: 2,
+          pointRadius: 3,
+          pointBackgroundColor: '#00ffe7',
+          tension: 0.4,
+          fill: true,
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        animation: { duration: 300 },
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            backgroundColor: '#0d1117',
+            borderColor: '#00ffe7',
+            borderWidth: 1,
+            titleColor: '#00ffe7',
+            bodyColor: '#c9d1d9',
+          },
+          zoom: {
+            pan: {
+              enabled: true,
+              mode: 'x',
+              threshold: 5,
+            },
+            zoom: {
+              wheel: { enabled: true },
+              pinch: { enabled: true },
+              mode: 'x',
+            }
+          }
+        },
+        scales: {
+          x: {
+            ticks: { color: '#8b949e', font: { family: 'Share Tech Mono', size: 10 }, maxRotation: 0 },
+            grid: { color: 'rgba(255,255,255,0.04)' }
+          },
+          y: {
+            ticks: { color: '#8b949e', font: { family: 'Share Tech Mono', size: 10 } },
+            grid: { color: 'rgba(255,255,255,0.06)' },
+            beginAtZero: true
+          }
+        }
+      }
+    });
+
+    function now() {
+      const d = new Date();
+      return `${String(d.getHours()).padStart(2,'0')}:${String(d.getMinutes()).padStart(2,'0')}:${String(d.getSeconds()).padStart(2,'0')}`;
+    }
+
+    const sensorRef = ref(db, '/sensor');
+    onValue(sensorRef, (snapshot) => {
+      const data = snapshot.val();
+      if (!data) return;
+
+      // Update cards
+      document.getElementById('val-flow').textContent    = parseFloat(data.flowRate   ?? 0).toFixed(2);
+      document.getElementById('val-total').textContent   = parseFloat(data.totalLiters ?? 0).toFixed(2);
+      document.getElementById('val-time').textContent    = data.elapsedTime ?? '0:0:0';
+      document.getElementById('val-valve').textContent   = parseFloat(data.servoPos   ?? 0).toFixed(1);
+      
+      const status = data.status ?? 'OFF';
+      const statusEl = document.getElementById('val-status');
+      statusEl.textContent = status;
+      statusEl.className = 'status-badge ' + (status === 'ACTIVE' ? 'active' : 'off');
+
+      // Update dot indicator
+      const dot = document.getElementById('live-dot');
+      dot.className = 'dot ' + (status === 'ACTIVE' ? 'pulse' : '');
+
+      // Update chart
+      const t = now();
+      labels.push(t);
+      flowData.push(parseFloat(data.flowRate ?? 0));
+      chart.update();
+    });
+    // Reset zoom button
+    document.getElementById('btn-reset-zoom').addEventListener('click', () => {
+      chart.resetZoom();
+    });
+  </script>
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:       #0a0e17;
+      --surface:  #0d1117;
+      --border:   rgba(0,255,231,0.12);
+      --accent:   #00ffe7;
+      --accent2:  #00b4d8;
+      --warn:     #ff6b35;
+      --text:     #c9d1d9;
+      --muted:    #8b949e;
+      --font-mono: 'Share Tech Mono', monospace;
+      --font-ui:   'Rajdhani', sans-serif;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-ui);
+      min-height: 100vh;
+      padding: 24px 20px;
+      overflow-x: hidden;
+    }
+
+    /* grid bg */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(0,255,231,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,255,231,0.03) 1px, transparent 1px);
+      background-size: 40px 40px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .wrapper { position: relative; z-index: 1; max-width: 900px; margin: 0 auto; }
+
+    /* HEADER */
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 32px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .logo-area h1 {
+      font-family: var(--font-ui);
+      font-weight: 700;
+      font-size: 1.6rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #fff;
+    }
+
+    .logo-area h1 span { color: var(--accent); }
+
+    .logo-area p {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--muted);
+      margin-top: 2px;
+      letter-spacing: 0.08em;
+    }
+
+    .live-indicator {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--muted);
+      letter-spacing: 0.1em;
+    }
+
+    .dot {
+      width: 9px; height: 9px;
+      border-radius: 50%;
+      background: var(--muted);
+    }
+
+    .dot.pulse {
+      background: var(--accent);
+      box-shadow: 0 0 0 0 rgba(0,255,231,0.6);
+      animation: pulse 1.4s infinite;
+    }
+
+    @keyframes pulse {
+      0%   { box-shadow: 0 0 0 0 rgba(0,255,231,0.6); }
+      70%  { box-shadow: 0 0 0 8px rgba(0,255,231,0); }
+      100% { box-shadow: 0 0 0 0 rgba(0,255,231,0); }
+    }
+
+    /* CARDS */
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 14px;
+      margin-bottom: 24px;
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 18px 16px 14px;
+      position: relative;
+      overflow: hidden;
+      transition: border-color 0.2s;
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--accent), transparent);
+      opacity: 0.5;
+    }
+
+    .card:hover { border-color: rgba(0,255,231,0.3); }
+
+    .card-label {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      color: var(--muted);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    .card-value {
+      font-family: var(--font-mono);
+      font-size: 1.9rem;
+      color: #fff;
+      line-height: 1;
+      letter-spacing: -0.01em;
+    }
+
+    .card-unit {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      color: var(--accent);
+      margin-top: 4px;
+      letter-spacing: 0.1em;
+    }
+
+    /* STATUS BADGE */
+    .status-badge {
+      font-family: var(--font-mono);
+      font-size: 1.1rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+    }
+
+    .status-badge.active { color: var(--accent); text-shadow: 0 0 12px rgba(0,255,231,0.5); }
+    .status-badge.off    { color: var(--muted); }
+
+    /* CHART */
+    .chart-box {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 20px;
+    }
+
+    .chart-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 16px;
+    }
+
+    .chart-title {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--muted);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .chart-accent {
+      width: 28px; height: 2px;
+      background: var(--accent);
+      border-radius: 2px;
+    }
+
+    .chart-wrap { height: 220px; }
+
+    .btn-reset {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      color: var(--accent);
+      background: transparent;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 4px 10px;
+      cursor: pointer;
+      letter-spacing: 0.08em;
+      transition: background 0.2s, border-color 0.2s;
+    }
+
+    .btn-reset:hover {
+      background: rgba(0,255,231,0.08);
+      border-color: var(--accent);
+    }
+
+    .chart-hints {
+      font-family: var(--font-mono);
+      font-size: 0.6rem;
+      color: var(--muted);
+      margin-top: 8px;
+      letter-spacing: 0.06em;
+      opacity: 0.6;
+    }
+
+    /* FOOTER */
+    footer {
+      margin-top: 24px;
+      text-align: center;
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      color: var(--muted);
+      letter-spacing: 0.1em;
+      opacity: 0.5;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+    <header>
+      <div class="logo-area">
+        <h1>FLOW <span>MONITOR</span></h1>
+        <p>ESP32 · REALTIME DASHBOARD</p>
+      </div>
+      <div class="live-indicator">
+        <div class="dot" id="live-dot"></div>
+        LIVE
+      </div>
+    </header>
+
+    <div class="cards">
+      <div class="card">
+        <div class="card-label">Flow Rate</div>
+        <div class="card-value" id="val-flow">—</div>
+        <div class="card-unit">L / MIN</div>
+      </div>
+      <div class="card">
+        <div class="card-label">Total Volume</div>
+        <div class="card-value" id="val-total">—</div>
+        <div class="card-unit">LITER</div>
+      </div>
+      <div class="card">
+        <div class="card-label">Elapsed Time</div>
+        <div class="card-value" style="font-size:1.35rem" id="val-time">—</div>
+        <div class="card-unit">HH : MM : SS</div>
+      </div>
+      <div class="card">
+        <div class="card-label">Valve Position</div>
+        <div class="card-value" id="val-valve">—</div>
+        <div class="card-unit">DEGREE (°)</div>
+      </div>
+      <div class="card">
+        <div class="card-label">Status</div>
+        <div class="card-value">
+          <span class="status-badge off" id="val-status">—</span>
+        </div>
+        <div class="card-unit">SYSTEM</div>
+      </div>
+    </div>
+
+    <div class="chart-box">
+      <div class="chart-header">
+        <span class="chart-title">▸ Flow Rate History</span>
+        <button class="btn-reset" id="btn-reset-zoom">RESET ZOOM</button>
+      </div>
+      <div class="chart-wrap">
+        <canvas id="flowChart"></canvas>
+      </div>
+      <div class="chart-hints">🖱 Scroll to zoom · Click & drag to pan · Pinch on mobile</div>
+    </div>
+
+    <footer>MATELAB · FIREBASE RTDB · AUTO REFRESH</footer>
+  </div>
+</body>
+</html>
