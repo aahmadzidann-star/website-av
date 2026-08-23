@@ -15,21 +15,28 @@
   <!-- ============ MENU / ORDER ============ -->
   <section class="view active" id="view-menu">
     <div class="topbar">
-      <a class="icon-btn" href="/">
+      <a class="icon-btn" href="index.html">
         <svg width="17" height="17" viewBox="0 0 24 24" fill="none"><path d="M15 6l-6 6 6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </a>
     <h2>Order</h2>
       <button class="icon-btn" onclick="openCS()">
         <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 22c5.5 0 10-4.5 10-10S17.5 2 12 2 2 6.5 2 12c0 1.8.5 3.5 1.3 5L2 22l5.2-1.3c1.4.8 3.1 1.3 4.8 1.3z"/></svg>
       </button>
-      <a class="icon-btn badge-cart" href="/cart">
+      <a class="icon-btn badge-cart" href="cart.html">
         <svg width="17" height="17" viewBox="0 0 24 24" fill="none"><path d="M6 2L3 7v13a2 2 0 002 2h14a2 2 0 002-2V7l-3-5H6z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M3 7h18M16 11a4 4 0 01-8 0" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
         <span class="cart-dot" id="cart-dot" style="display:none;">0</span>
       </a>
     </div>
 
     <div class="banner-wrap">
-      <img src="assets/banner.png" alt="Promo Banner" class="banner-img">
+      <div class="banner-slider" id="banner-slider">
+        <div class="banner-track" id="banner-track">
+          <img src="assets/banner1.png" alt="Promo 1" class="banner-img">
+          <img src="assets/banner2.png" alt="Promo 2" class="banner-img">
+          <img src="assets/banner3.png" alt="Promo 3" class="banner-img">
+        </div>
+        <div class="banner-dots" id="banner-dots"></div>
+      </div>
     </div>
 
     <div class="search-wrap">
@@ -59,7 +66,7 @@
         <div class="l1" id="bar-count">0 item dipilih</div>
         <div class="l2" id="bar-total">Rp0</div>
       </div>
-      <a class="cbtn" href="/cart">
+      <a class="cbtn" href="cart.html">
         Keranjang
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </a>
@@ -121,8 +128,8 @@ function renderGrid(){
       const qty = cart[p.id]||0;
       return `
       <div class="p-card">
-        <div class="p-thumb" onclick="location.href='/detail?id=${p.id}'"><img src="${p.img}" alt="${p.name}" class="p-img"></div>
-        <div class="p-name" onclick="location.href='/detail?id=${p.id}'">${p.name}</div>
+        <div class="p-thumb" onclick="location.href='detail.html?id=${p.id}'"><img src="${p.img}" alt="${p.name}" class="p-img"></div>
+        <div class="p-name" onclick="location.href='detail.html?id=${p.id}'">${p.name}</div>
         <div class="p-desc">${p.shortDesc}</div>
         <div class="p-bottom">
           <span class="p-price">${rupiah(p.price)}</span>
@@ -140,6 +147,100 @@ function renderGrid(){
 }
 
 /* ============ INIT ============ */
+/* ============ BANNER CAROUSEL ============ */
+(function initBannerSlider(){
+  const slider = document.getElementById("banner-slider");
+  const track = document.getElementById("banner-track");
+  const dotsWrap = document.getElementById("banner-dots");
+  if(!slider || !track) return;
+
+  const originalSlides = Array.from(track.children);
+  const total = originalSlides.length;
+  if(total === 0) return;
+
+  /* Clone slide pertama ke ujung akhir, untuk looping mulus */
+  const firstClone = originalSlides[0].cloneNode(true);
+  track.appendChild(firstClone);
+
+  let index = 0;
+  let autoTimer = null;
+
+  originalSlides.forEach((_, i)=>{
+    const dot = document.createElement("div");
+    dot.className = "dot" + (i===0 ? " active" : "");
+    dot.onclick = ()=> goTo(i);
+    dotsWrap.appendChild(dot);
+  });
+  const dots = Array.from(dotsWrap.children);
+
+  function update(withTransition){
+    track.style.transition = withTransition ? "transform .45s ease" : "none";
+    track.style.transform = `translateX(-${index*100}%)`;
+    dots.forEach((d,i)=> d.classList.toggle("active", i === index % total));
+  }
+
+  function goTo(i){
+    index = i;
+    update(true);
+
+    if(index === total){
+      setTimeout(()=>{
+        index = 0;
+        update(false);
+      }, 460);
+    }
+    resetAuto();
+  }
+  function next(){ goTo(index+1); }
+  function prev(){ goTo(index===0 ? total-1 : index-1); }
+
+  function startAuto(){
+    autoTimer = setInterval(next, 3500);
+  }
+  function resetAuto(){
+    clearInterval(autoTimer);
+    startAuto();
+  }
+
+  /* Drag / swipe support (mouse + touch) */
+  let startX=0, currentX=0, dragging=false;
+
+  function dragStart(x){
+    dragging = true;
+    startX = x;
+    currentX = x;
+    slider.classList.add("dragging");
+    clearInterval(autoTimer);
+    track.style.transition = "none";
+  }
+  function dragMove(x){
+    if(!dragging) return;
+    currentX = x;
+    const diff = currentX - startX;
+    track.style.transform = `translateX(calc(-${index*100}% + ${diff}px))`;
+  }
+  function dragEnd(){
+    if(!dragging) return;
+    dragging = false;
+    slider.classList.remove("dragging");
+    const diff = currentX - startX;
+    if(diff < -50) next();
+    else if(diff > 50) prev();
+    else update(true);
+  }
+
+  slider.addEventListener("mousedown", e=> dragStart(e.clientX));
+  window.addEventListener("mousemove", e=> dragMove(e.clientX));
+  window.addEventListener("mouseup", dragEnd);
+
+  slider.addEventListener("touchstart", e=> dragStart(e.touches[0].clientX), {passive:true});
+  slider.addEventListener("touchmove", e=> dragMove(e.touches[0].clientX), {passive:true});
+  slider.addEventListener("touchend", dragEnd);
+
+  update(false);
+  startAuto();
+})();
+
 renderGrid();
 refreshCartBar();
 document.getElementById("cart-bar").classList.toggle("show", totalItems()>0);
