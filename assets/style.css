@@ -247,11 +247,19 @@ z-index:2;   /* tambahkan ini */
 .banner-img{
   flex:0 0 100%;
   width:100%;
-  aspect-ratio:16/6;
-  object-fit:cover;
+  height:auto;
   display:block;
+  object-fit:cover;
   user-select:none;
   -webkit-user-drag:none;
+}
+.banner-slider{
+  padding-top:37.5%;
+  height:0;
+}
+.banner-slider .banner-track{
+  position:absolute;
+  top:0;left:0;right:0;bottom:0;
 }
 .banner-dots{
   position:absolute;
