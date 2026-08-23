@@ -15,7 +15,7 @@
   <!-- ============ PRODUCT DETAIL ============ -->
   <section class="view active" id="view-detail">
     <div class="detail-hero" id="detail-hero">
-      <a class="detail-back" href="/menu">
+      <a class="detail-back" href="menu.html">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M15 6l-6 6 6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </a>
       <button class="detail-cs" onclick="openCS()">
@@ -70,7 +70,7 @@ function addFromDetail(){
   cart[currentDetailId] = cur + detailQtyVal;
   saveCart();
   showToast("Ditambahkan ke keranjang");
-  window.location.href = "/menu";
+  window.location.href = "menu.html";
 }
 
 /* ============ INIT ============ */
