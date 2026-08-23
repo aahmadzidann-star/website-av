@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Detail Produk — AV OFFICIAL STORE</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<div class="app">
+
+  <!-- ============ PRODUCT DETAIL ============ -->
+  <section class="view active" id="view-detail">
+    <div class="detail-hero" id="detail-hero">
+      <a class="detail-back" href="menu.html">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M15 6l-6 6 6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <button class="detail-cs" onclick="openCS()">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 22c5.5 0 10-4.5 10-10S17.5 2 12 2 2 6.5 2 12c0 1.8.5 3.5 1.3 5L2 22l5.2-1.3c1.4.8 3.1 1.3 4.8 1.3z"/></svg>
+      </button>
+      <div id="detail-icon"></div>
+    </div>
+    <div class="detail-card">
+      <div class="detail-cat" id="detail-cat"></div>
+      <h2 id="detail-name"></h2>
+      <div class="detail-price" id="detail-price"></div>
+      <div class="detail-desc-label">Deskripsi Produk</div>
+      <div class="detail-desc" id="detail-desc"></div>
+      <div class="qty-row">
+        <span class="lbl">Jumlah Pesanan</span>
+        <div class="stepper">
+          <button onclick="detailQty(-1)">−</button>
+          <span id="detail-qty">1</span>
+          <button onclick="detailQty(1)">+</button>
+        </div>
+      </div>
+      <button class="big-add-btn" id="detail-add-btn" onclick="addFromDetail()"></button>
+    </div>
+  </section>
+
+  <div class="toast" id="toast"></div>
+
+</div>
+
+<script src="assets/data.js"></script>
+<script src="assets/cart.js"></script>
+<script>
+/* ============ STATE ============ */
+let currentDetailId = null;
+let detailQtyVal = 1;
+
+function getParam(name){
+  return new URLSearchParams(window.location.search).get(name);
+}
+
+function updateDetailBtn(p){
+  document.getElementById("detail-add-btn").innerHTML = `Tambah Pesanan &ndash; ${rupiah(p.price*detailQtyVal)}`;
+}
+function detailQty(delta){
+  detailQtyVal = Math.max(1, detailQtyVal+delta);
+  document.getElementById("detail-qty").textContent = detailQtyVal;
+  const p = PRODUCTS.find(x=>x.id===currentDetailId);
+  updateDetailBtn(p);
+}
+function addFromDetail(){
+  const cur = cart[currentDetailId]||0;
+  cart[currentDetailId] = cur + detailQtyVal;
+  saveCart();
+  showToast("Ditambahkan ke keranjang");
+  window.location.href = "menu.html";
+}
+
+/* ============ INIT ============ */
+(function initDetail(){
+  const id = getParam("id");
+  const p = PRODUCTS.find(x=>x.id===id) || PRODUCTS[0];
+  currentDetailId = p.id;
+  detailQtyVal = 1;
+  document.getElementById("detail-icon").innerHTML = `<img src="${p.img}" alt="${p.name}" class="detail-img">`;
+  document.getElementById("detail-cat").textContent = p.category;
+  document.getElementById("detail-name").textContent = p.name;
+  document.getElementById("detail-price").textContent = rupiah(p.price);
+  document.getElementById("detail-desc").textContent = p.longDesc;
+  document.getElementById("detail-qty").textContent = detailQtyVal;
+  updateDetailBtn(p);
+})();
+</script>
+</body>
+</html>

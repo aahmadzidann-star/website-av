@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact Person — AV OFFICIAL STORE</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<div class="app">
+
+  <!-- ============ KONTAK ============ -->
+  <section class="view active" id="view-kontak">
+    <div class="topbar">
+      <a class="icon-btn" href="index.html">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none"><path d="M15 6l-6 6 6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <h2>Contact Person</h2>
+      <span style="width:38px;"></span>
+    </div>
+    <div class="page-pad" id="kontak-list"></div>
+  </section>
+
+</div>
+
+<script src="assets/data.js"></script>
+<script>
+function renderKontak(){
+  const el = document.getElementById("kontak-list");
+  el.innerHTML = KONTAK.map(k=>`
+    <a class="k-item" href="${k.url}" target="_blank" rel="noopener">
+      <div class="k-icon">${KICONS[k.icon]}</div>
+      <div class="k-info">
+        <div class="k-label">${k.label}</div>
+        <div class="k-value">${k.value}</div>
+      </div>
+      <div class="k-arrow">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+    </a>
+  `).join("");
+}
+renderKontak();
+</script>
+</body>
+</html>
