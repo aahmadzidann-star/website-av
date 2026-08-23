@@ -229,16 +229,15 @@ z-index:2;   /* tambahkan ini */
 /*banner*/
 .banner-wrap{
   padding:14px 20px 0;
+  border-radius:var(--radius-md);
+  box-shadow:var(--shadow-sm);
 }
 .banner-slider{
   position:relative;
   overflow:hidden;
-  border-radius:var(--radius-md);
-  box-shadow:var(--shadow-sm);
   cursor:grab;
-  -webkit-mask-image:-webkit-radial-gradient(white, black);
-  transform:translateZ(0);
-  -webkit-transform:translateZ(0);
+  clip-path:inset(0 round 18px);
+  -webkit-clip-path:inset(0 round 18px);
 }
 .banner-slider.dragging{ cursor:grabbing; }
 .banner-track{
