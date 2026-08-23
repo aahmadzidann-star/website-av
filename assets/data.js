@@ -79,6 +79,12 @@ const PRODUCTS = [
     longDesc:"Layanan unblock IMEI untuk iPhone yang terblokir/blacklist, dengan masa garansi 3 bulan. Proses dibantu penuh oleh admin, tinggal kirim data unit kamu."
   },
   {
+    id:"imei1", name:"Unblock IMEI 1 Bulan", category:"Unblock IMEI", price:125000, 
+    icon:"unlock", img:"assets/imei.png",
+    shortDesc:"Layanan Unblock IMEI iPhone, Garansi 1 bulan.",
+    longDesc:"Layanan unblock IMEI untuk iPhone yang terblokir/blacklist, dengan masa garansi 1 bulan. Proses dibantu penuh oleh admin, tinggal kirim data unit kamu."
+  },
+  {
     id:"iphone13", name:"iPhone 13 256GB", category:"iPhone", price:5400000, 
     icon:"phone", img:"assets/iphone.png",
     shortDesc:"Unit Nominus, Bisa cek ig : @avphone_katalog",
