@@ -15,14 +15,14 @@
   <!-- ============ MENU / ORDER ============ -->
   <section class="view active" id="view-menu">
     <div class="topbar">
-      <a class="icon-btn" href="index.html">
+      <a class="icon-btn" href="/">
         <svg width="17" height="17" viewBox="0 0 24 24" fill="none"><path d="M15 6l-6 6 6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </a>
     <h2>Order</h2>
       <button class="icon-btn" onclick="openCS()">
         <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 22c5.5 0 10-4.5 10-10S17.5 2 12 2 2 6.5 2 12c0 1.8.5 3.5 1.3 5L2 22l5.2-1.3c1.4.8 3.1 1.3 4.8 1.3z"/></svg>
       </button>
-      <a class="icon-btn badge-cart" href="cart.html">
+      <a class="icon-btn badge-cart" href="/cart">
         <svg width="17" height="17" viewBox="0 0 24 24" fill="none"><path d="M6 2L3 7v13a2 2 0 002 2h14a2 2 0 002-2V7l-3-5H6z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M3 7h18M16 11a4 4 0 01-8 0" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
         <span class="cart-dot" id="cart-dot" style="display:none;">0</span>
       </a>
@@ -59,7 +59,7 @@
         <div class="l1" id="bar-count">0 item dipilih</div>
         <div class="l2" id="bar-total">Rp0</div>
       </div>
-      <a class="cbtn" href="cart.html">
+      <a class="cbtn" href="/cart">
         Keranjang
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </a>
@@ -121,8 +121,8 @@ function renderGrid(){
       const qty = cart[p.id]||0;
       return `
       <div class="p-card">
-        <div class="p-thumb" onclick="location.href='detail.html?id=${p.id}'"><img src="${p.img}" alt="${p.name}" class="p-img"></div>
-        <div class="p-name" onclick="location.href='detail.html?id=${p.id}'">${p.name}</div>
+        <div class="p-thumb" onclick="location.href='/detail?id=${p.id}'"><img src="${p.img}" alt="${p.name}" class="p-img"></div>
+        <div class="p-name" onclick="location.href='/detail?id=${p.id}'">${p.name}</div>
         <div class="p-desc">${p.shortDesc}</div>
         <div class="p-bottom">
           <span class="p-price">${rupiah(p.price)}</span>
