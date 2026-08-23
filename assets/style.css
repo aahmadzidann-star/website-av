@@ -33,26 +33,35 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;}
 html, body{
   height:100%;
 }
-body{
-  background:#1a1a1a;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  min-height:100vh;
-  padding:40px 20px;
-}
 .app{
   width:100%;
-  max-width:420px;
-  height:860px;
-  max-height:calc(100vh - 80px);
+  max-width:480px;
+  min-height:100vh;
+  margin:0 auto;
   background:var(--bg);
   position:relative;
-  border-radius:36px;
-  overflow-y:auto;
   overflow-x:hidden;
   display:flex;
   flex-direction:column;
+}
+
+/* Tampilan "bingkai HP" hanya aktif di layar lebar (desktop) */
+@media (min-width:900px){
+  body{
+    background:#1a1a1a;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    min-height:100vh;
+    padding:40px 20px;
+  }
+  .app{
+    max-width:420px;
+    height:860px;
+    max-height:calc(100vh - 80px);
+    border-radius:36px;
+    overflow-y:auto;
+  }
 }
 
 .detail-cs{
@@ -435,12 +444,14 @@ box-shadow:var(--shadow-sm);
 }
 
 /*SCROLL BAR*/
-.app::-webkit-scrollbar{
-  width:0px;
-  background:transparent;
-}
-.app{
-  scrollbar-width:none;
+@media (min-width:900px){
+  .app::-webkit-scrollbar{
+    width:0px;
+    background:transparent;
+  }
+  .app{
+    scrollbar-width:none;
+  }
 }
 
 /* ---------- KONTAK ---------- */
