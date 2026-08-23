@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AVstore — Aplikasi Premium & iPhone</title>
+<title>AV OFFICIAL STORE</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -202,6 +202,19 @@
   }
 
   .page-pad{padding:18px 20px 120px;}
+
+  /*banner*/
+  .banner-wrap{
+  padding:14px 20px 0;
+}
+.banner-img{
+  width:100%;
+  aspect-ratio:16/6;
+  object-fit:cover;
+  border-radius:var(--radius-md);
+  display:block;
+  box-shadow:var(--shadow-sm);
+}
 
   /* ---------- SEARCH ---------- */
   .search-wrap{padding:14px 20px 4px;}
@@ -455,10 +468,10 @@
   <!-- ============ HERO / HOME ============ -->
   <section class="view active" id="view-home">
     <div class="hero">
-      <div class="hero-eyebrow">AVDigital &middot; AVPhone</div>
+      
       <div class="logo-ring"><img src="assets/logo.png" alt="Logo AVstore"></div>
-      <h1>AVstore</h1>
-      <p class="tagline">Aplikasi premium & iPhone terpercaya — order gampang, langsung chat admin.</p>
+      <h1>AV STORE</h1>
+      <p class="tagline">Telah melayani berbagai kebutuhan digital Sejak 2021</p>
 
       <div class="hero-actions">
         <button class="portal-btn primary" onclick="nav('menu')">
@@ -501,7 +514,7 @@
         </button>
       </div>
 
-      <div class="hero-foot">AVstore &mdash; AVDigital &amp; AVPhone</div>
+      <div class="hero-foot">AV OFFICIAL STORE</div>
     </div>
   </section>
 
@@ -517,6 +530,11 @@
         <span class="cart-dot" id="cart-dot" style="display:none;">0</span>
       </button>
     </div>
+
+    <div class="banner-wrap">
+  <img src="assets/banner.png" alt="Promo Banner" class="banner-img">
+</div>
+
     <div class="search-wrap">
       <div class="search-box">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3" stroke-linecap="round"/></svg>
@@ -653,28 +671,73 @@ const PRODUCTS = [
     id:"netflix", name:"Netflix Premium", category:"Aplikasi Premium", price:30000,
     icon:"streaming", img:"assets/netflix.png",
     shortDesc:"Private Profil, 1 Bulan, 4K UHD, Full Garansi.",
-    longDesc:"Tonton ribuan film dan serial eksklusif berkualitas HD tanpa batas.\n\n• 4K UHD, Support All Device\n• Private Profile (1 Profile 1 User)\n• Full Garansi 1 Bulan\n• Ada Kendala ? Segera Hubungi Admin !"
+    longDesc:"Tonton ribuan film dan serial eksklusif berkualitas HD tanpa batas.\n• 4K UHD, Support All Device\n• Private Profile (1 Profile 1 User)\n• Full Garansi 1 Bulan\n• Ada Kendala ? Segera Hubungi Admin !"
   },
   {
     id:"spotify", name:"Spotify Premium", category:"Aplikasi Premium", price:30000, 
     icon:"music", img:"assets/spotify.png",
     shortDesc:"Private Akun, 1 Bulan, Akun Seller, Full Garansi.",
-    longDesc:"Nikmati jutaan lagu tanpa iklan, kualitas audio tinggi, dan bisa didownload untuk didengarkan offline.\n\n• Private Akun\n• Full Garansi 1 Bulan\n• Akun Dari Seller, Tinggal Login\n• Ada Kendala ? Segera Hubungi Admin !"
+    longDesc:"Nikmati jutaan lagu tanpa iklan, kualitas audio tinggi, dan bisa didownload untuk didengarkan offline.\n• Private Akun\n• Full Garansi 1 Bulan\n• Akun Dari Seller, Tinggal Login\n• Ada Kendala ? Segera Hubungi Admin !"
   },
   {
-    id:"disney", name:"Disney+ Hotstar", category:"Aplikasi Premium", price:30000, icon:"spark",
-    shortDesc:"Film, series, hingga tayangan olahraga.",
-    longDesc:"Akses ke katalog Disney, Marvel, Star Wars, Pixar, National Geographic, sampai tayangan olahraga pilihan. Satu akun, hiburan lengkap untuk seluruh keluarga."
+    id:"youtube", name:"Youtube Premium", category:"Aplikasi Premium", price:32000, 
+    icon:"streaming", img:"assets/youtube.png",
+    shortDesc:"Private Akun, 3 Bulan, Akun Seller, Full Garansi.",
+    longDesc:"Nikmati tayangan video dan musik bebas iklan yang bisa diputar di latar belakang.\n• 3 Bulan Mixplan Full Garansi\n• Akun Dari Seller, Tinggal Login\n• Ada Kendala ? Segera Hubungi Admin !"
   },
   {
-    id:"imei3", name:"Unblock IMEI 3 Bulan", category:"Unblock IMEI", price:30000, icon:"unlock",
-    shortDesc:"Layanan unblock IMEI iPhone, garansi 3 bulan.",
+    id:"disney", name:"Disney+ Hotstar", category:"Aplikasi Premium", price:30000, 
+    icon:"spark", img:"assets/disney.png",
+    shortDesc:"Sharing Akun, 1 Bulan, Akun Seller, Full Garansi.",
+    longDesc:"Akses ke katalog Disney, Marvel, Star Wars, Pixar, sampai tayangan olahraga pilihan. Satu akun, hiburan lengkap untuk seluruh keluarga.\n• Sharing Akun\n• Premium, Support All Device\n• Ada Kendala ? Segera Hubungi Admin !"
+   },
+  {
+    id:"capcut", name:"Capcut Pro 7D", category:"Aplikasi Premium", price:13000, 
+    icon:"streaming", img:"assets/capcut.png",
+    shortDesc:"Private Akun, 7 Hari, Akun Seller, Full Garansi.",
+    longDesc:"Edit video layaknya profesional dengan akses penuh ke semua efek dan fitur berbayar.\n• Paket Pro Full Garansi 7 Hari\n• Akun Dari Seller, Tinggal Login\n• Ada Kendala ? Segera Hubungi Admin !"
+  },
+  {
+    id:"capcut1b", name:"Capcut Pro 1B", category:"Aplikasi Premium", price:32000, 
+    icon:"streaming", img:"assets/capcut.png",
+    shortDesc:"Private Akun, 1 Bulan, Akun Seller, Full Garansi.",
+    longDesc:"Edit video layaknya profesional dengan akses penuh ke semua efek dan fitur berbayar.\n• Paket Pro Full Garansi 1 Bulan\n• Akun Dari Seller, Tinggal Login\n• Ada Kendala ? Segera Hubungi Admin !"
+  },
+  {
+    id:"prime", name:"Prime Video", category:"Aplikasi Premium", price:15000, 
+    icon:"spark", img:"assets/prime.png",
+    shortDesc:"Private Akun, 1 Bulan, Akun Seller, Full Garansi.",
+    longDesc:"Akses serial orisinal pemenang penghargaan dan koleksi film eksklusif Amazon.\n• Private Akun, Bisa All Device\n• Full Garansi 1 Bulan\n• Ada Kendala ? Segera Hubungi Admin !"
+   },
+   {
+    id:"canva", name:"Canva Pro", category:"Aplikasi Premium", price:15000, 
+    icon:"spark", img:"assets/canva.png",
+    shortDesc:"Via Invite, Lifetime, Paket Pro, Garansi.",
+    longDesc:"Buat desain grafis memukau dengan mudah menggunakan jutaan elemen dan template premium.\n• Via invite email (email mu diinvite ke pro)\n• Durasi Lifetime Garansi 5 Bulan\n• Ada Kendala ? Segera Hubungi Admin !"
+  },
+  {
+    id:"vidiomobile", name:"Vidio Mobile", category:"Aplikasi Premium", price:30000, 
+    icon:"spark", img:"assets/vidio.png",
+    shortDesc:"Private Akun, 1 Bulan, Khusus Mobile, Full Garansi.",
+    longDesc:"Pusat tayangan olahraga terlengkap, sinetron favorit, dan serial orisinal lokal eksklusif tanpa jeda iklan.\n• Khusus Mobile, Paket Platinum\n• Full Garansi 1 Bulan\n• Ada Kendala ? Segera Hubungi Admin !"
+  },
+  {
+    id:"vidio", name:"Vidio Platinum", category:"Aplikasi Premium", price:45000, 
+    icon:"spark", img:"assets/vidio.png",
+    shortDesc:"Private Akun, 1 Bulan, All Device, Full Garansi.",
+    longDesc:"Pusat tayangan olahraga terlengkap, sinetron favorit, dan serial orisinal lokal eksklusif tanpa jeda iklan.\n• Support All Device, Paket Platinum\n• Full Garansi 1 Bulan\n• Ada Kendala ? Segera Hubungi Admin !"
+  },
+  {
+    id:"imei3", name:"Unblock IMEI 3 Bulan", category:"Unblock IMEI", price:150000, 
+    icon:"unlock", img:"assets/imei.png",
+    shortDesc:"Layanan Unblock IMEI iPhone, Garansi 3 bulan.",
     longDesc:"Layanan unblock IMEI untuk iPhone yang terblokir/blacklist, dengan masa garansi 3 bulan. Proses dibantu penuh oleh admin, tinggal kirim data unit kamu."
   },
   {
-    id:"iphone15", name:"iPhone 15", category:"iPhone", price:5000000, icon:"phone",
-    shortDesc:"Unit siap pakai, bisa cek dulu sebelum bayar.",
-    longDesc:"iPhone 15, unit siap pakai dengan kondisi sesuai deskripsi dari admin saat chat. Pembayaran COD tersedia untuk area tertentu — cek dulu unitnya sebelum bayar."
+    id:"iphone13", name:"iPhone 13 256GB", category:"iPhone", price:5400000, 
+    icon:"phone", img:"assets/iphone.png",
+    shortDesc:"Unit Nominus, Bisa cek ig : @avphone_katalog",
+    longDesc:"iPhone 13 256GB Inter ALL Operator, unit mulus nominus , fungsi semua on, battery health diatas 90, info selengkapnya silahkan cek ig @avphone_katalog"
   },
 ];
 
