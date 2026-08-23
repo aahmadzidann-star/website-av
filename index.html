@@ -50,6 +50,24 @@
     box-shadow:0 0 60px rgba(14,27,77,0.06);
   }
 
+  .detail-back{
+  position:absolute;top:18px;left:18px;
+  width:38px;height:38px;border-radius:50%;
+  background:rgba(255,255,255,0.92);color:var(--navy);
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:var(--shadow-sm);
+  z-index:2;   /* tambahkan ini */
+}
+
+  .p-thumb, .ci-thumb{ overflow:hidden; }
+.p-img, .detail-img, .ci-img{
+  width:100%; height:100%;
+  object-fit:cover;
+  border-radius:inherit;
+}
+.detail-hero{ overflow:hidden; }
+.detail-img{ position:absolute; inset:0; width:100%; height:100%; }
+
   .view{display:none;animation:fadeIn .35s ease;}
   .view.active{display:block;}
   @keyframes fadeIn{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:translateY(0);}}
@@ -327,7 +345,7 @@
   .detail-card h2{font-size:21px;margin:0 0 6px;}
   .detail-price{font-size:19px;font-weight:800;color:var(--purple-dark);margin-bottom:16px;}
   .detail-desc-label{font-size:13px;font-weight:700;margin-bottom:6px;}
-  .detail-desc{font-size:13.5px;color:var(--muted);line-height:1.7;margin-bottom:24px;}
+  .detail-desc{font-size:13.5px;color:var(--muted);line-height:1.7;margin-bottom:24px;white-space:pre-line;}
   .qty-row{display:flex;align-items:center;justify-content:space-between;padding:14px 0;border-top:1px solid var(--border);}
   .qty-row .lbl{font-weight:700;font-size:14px;}
   .qty-row .stepper{background:var(--bg);border:1px solid var(--border);}
@@ -632,14 +650,16 @@ const CATEGORIES = ["Semua", "Aplikasi Premium", "Unblock IMEI", "iPhone"];
 
 const PRODUCTS = [
   {
-    id:"netflix", name:"Netflix Premium", category:"Aplikasi Premium", price:30000, icon:"streaming",
-    shortDesc:"Sharing/private, Ultra HD, multi-device.",
-    longDesc:"Akun Netflix Premium kualitas Ultra HD, bisa ditonton di TV, HP, maupun laptop. Garansi selama masa aktif — kalau ada kendala tinggal chat admin, langsung dibantu."
+    id:"netflix", name:"Netflix Premium", category:"Aplikasi Premium", price:30000,
+    icon:"streaming", img:"assets/netflix.png",
+    shortDesc:"Private Profil, 1 Bulan, 4K UHD, Full Garansi.",
+    longDesc:"Tonton ribuan film dan serial eksklusif berkualitas HD tanpa batas.\n\n• Premium 4K UHD\n• Support Semua Device\n• Private Profile (1 Profile 1 User)\n• Full Garansi 1 Bulan\n\nJika ada kendala chat admin langsung dibantu."
   },
   {
-    id:"spotify", name:"Spotify Premium", category:"Aplikasi Premium", price:30000, icon:"music",
-    shortDesc:"Streaming musik tanpa iklan, bisa offline.",
-    longDesc:"Nikmati jutaan lagu tanpa iklan, kualitas audio tinggi, dan bisa didownload untuk didengarkan offline. Cocok buat kamu yang tiap hari butuh musik menemani aktivitas."
+    id:"spotify", name:"Spotify Premium", category:"Aplikasi Premium", price:30000, 
+    icon:"music", img:"assets/spotify.png",
+    shortDesc:"Private Akun, 1 Bulan, Akun Seller, Full Garansi.",
+    longDesc:"Nikmati jutaan lagu tanpa iklan, kualitas audio tinggi, dan bisa didownload untuk didengarkan offline.\n\n• Private Akun\n• Paket Premium\n• Full Garansi 1 Bulan\n• Akun Dari Seller, Tinggal Login\n\nJika ada kendala chat admin langsung dibantu."
   },
   {
     id:"disney", name:"Disney+ Hotstar", category:"Aplikasi Premium", price:30000, icon:"spark",
@@ -761,7 +781,7 @@ function renderGrid(){
       const qty = cart[p.id]||0;
       return `
       <div class="p-card">
-        <div class="p-thumb" onclick="openDetail('${p.id}')">${ICONS[p.icon]}</div>
+        <div class="p-thumb" onclick="openDetail('${p.id}')"><img src="${p.img}" alt="${p.name}" class="p-img"></div>
         <div class="p-name" onclick="openDetail('${p.id}')">${p.name}</div>
         <div class="p-desc">${p.shortDesc}</div>
         <div class="p-bottom">
@@ -797,7 +817,7 @@ function openDetail(id){
   if(!p) return;
   currentDetailId = id;
   detailQtyVal = 1;
-  document.getElementById("detail-icon").innerHTML = ICONS[p.icon];
+  document.getElementById("detail-icon").innerHTML = `<img src="${p.img}" alt="${p.name}" class="detail-img">`;
   document.getElementById("detail-cat").textContent = p.category;
   document.getElementById("detail-name").textContent = p.name;
   document.getElementById("detail-price").textContent = rupiah(p.price);
@@ -862,7 +882,7 @@ function renderCart(){
     if(!p) return "";
     return `
     <div class="cart-item">
-      <div class="ci-thumb">${ICONS[p.icon]}</div>
+      <div class="ci-thumb"><img src="${p.img}" alt="${p.name}" class="ci-img"></div>
       <div class="ci-info">
         <div class="ci-name">${p.name}</div>
         <div class="ci-price">${rupiah(p.price)} / item</div>
