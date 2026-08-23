@@ -185,6 +185,22 @@
 
   .page-pad{padding:18px 20px 120px;}
 
+  /* ---------- SEARCH ---------- */
+  .search-wrap{padding:14px 20px 4px;}
+  .search-box{
+    display:flex;align-items:center;gap:10px;
+    background:var(--card);border:1px solid var(--border);
+    border-radius:14px;padding:11px 14px;
+    box-shadow:var(--shadow-sm);
+    color:var(--muted);
+  }
+  .search-box input{
+    border:none;outline:none;background:transparent;
+    flex:1;font-family:'Inter',sans-serif;font-size:13.5px;color:var(--navy);
+  }
+  .search-box input::placeholder{color:#A6A2C0;}
+  .search-box button{color:var(--muted);display:flex;align-items:center;}
+
   /* ---------- CATEGORY TABS ---------- */
   .tabs{
     display:flex;gap:8px;overflow-x:auto;padding:4px 20px 16px;
@@ -483,11 +499,20 @@
         <span class="cart-dot" id="cart-dot" style="display:none;">0</span>
       </button>
     </div>
+    <div class="search-wrap">
+      <div class="search-box">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3" stroke-linecap="round"/></svg>
+        <input type="text" id="search-input" placeholder="Cari nama produk..." oninput="onSearchInput(this.value)">
+        <button id="search-clear" onclick="clearSearch()" style="display:none;">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 6l12 12M18 6L6 18" stroke-linecap="round"/></svg>
+        </button>
+      </div>
+    </div>
     <div class="tabs" id="tabs"></div>
     <div class="grid" id="product-grid"></div>
     <div id="empty-menu" class="empty-state" style="display:none;">
       <div class="ic">🔍</div>
-      <div>Belum ada produk di kategori ini.</div>
+      <div id="empty-menu-text">Belum ada produk di kategori ini.</div>
     </div>
   </section>
 
@@ -648,6 +673,7 @@ const KONTAK = [
   { label:"Bot WhatsApp", value:"wa.me/6287766403975", url:"https://wa.me/6287766403975", icon:"wa" },
   { label:"TikTok AVDigital", value:"@avdigital_store", url:"https://www.tiktok.com/@avdigital_store", icon:"tiktok" },
   { label:"TikTok AVPhone", value:"@avphonestore", url:"https://www.tiktok.com/@avphonestore", icon:"tiktok" },
+  { label:"Instagram", value:"@avphone_katalog", url:"https://www.instagram.com/avphone_katalog/", icon:"instagram" },
 ];
 
 const KICONS = {
@@ -656,10 +682,12 @@ const KICONS = {
   channel: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 11l16-7-5 17-4-6-6-2z" stroke-linejoin="round"/></svg>`,
   telegram: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 3L2 11l6 2m14-10l-4 18-8-6m12-12L8 13" stroke-linejoin="round" stroke-linecap="round"/></svg>`,
   tiktok: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 3v11.5a3.5 3.5 0 11-3.5-3.5" stroke-linecap="round"/><path d="M14 3c.3 2.3 2 4 4.5 4.2" stroke-linecap="round"/></svg>`,
+  instagram: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1" fill="currentColor" stroke="none"/></svg>`,
 };
 
 /* ============ STATE ============ */
 let currentTab = "Semua";
+let searchQuery = "";
 let currentDetailId = null;
 let detailQtyVal = 1;
 let cart = {};
@@ -700,13 +728,32 @@ function setTab(c){
   renderGrid();
 }
 
+function onSearchInput(val){
+  searchQuery = val;
+  document.getElementById("search-clear").style.display = val ? "flex" : "none";
+  renderGrid();
+}
+function clearSearch(){
+  searchQuery = "";
+  document.getElementById("search-input").value = "";
+  document.getElementById("search-clear").style.display = "none";
+  renderGrid();
+}
+
 function renderGrid(){
   renderTabs();
-  const list = PRODUCTS.filter(p => currentTab==="Semua" || p.category===currentTab);
+  const q = searchQuery.trim().toLowerCase();
+  const list = PRODUCTS.filter(p =>
+    (currentTab==="Semua" || p.category===currentTab) &&
+    (q==="" || p.name.toLowerCase().includes(q))
+  );
   const grid = document.getElementById("product-grid");
   const empty = document.getElementById("empty-menu");
   if(list.length===0){
     grid.innerHTML = "";
+    document.getElementById("empty-menu-text").textContent = q
+      ? `Produk "${searchQuery}" tidak ditemukan.`
+      : "Belum ada produk di kategori ini.";
     empty.style.display = "block";
   } else {
     empty.style.display = "none";
@@ -737,7 +784,8 @@ function changeQty(id, delta){
   const next = Math.max(0, cur+delta);
   if(next===0) delete cart[id]; else cart[id]=next;
   saveCart();
-  renderGrid();
+  if(document.getElementById("view-menu").classList.contains("active")) renderGrid();
+  if(document.getElementById("view-cart").classList.contains("active")) renderCart();
   refreshCartBar();
   document.getElementById("cart-bar").classList.toggle("show", document.getElementById("view-menu").classList.contains("active") && totalItems()>0);
   if(delta>0) showToast("Ditambahkan ke keranjang");
