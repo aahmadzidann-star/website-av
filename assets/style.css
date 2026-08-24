@@ -512,6 +512,105 @@ z-index:2;   /* tambahkan ini */
   color:var(--muted);margin:22px 0 12px;
 }
 
+/* ---------- SECONDARY CHECKOUT BUTTON (Checkout Langsung) ---------- */
+.checkout-btn-outline{
+  width:100%;margin-top:10px;
+  background:var(--card);color:var(--purple-dark);
+  border:1.5px solid var(--purple);
+  padding:15px;border-radius:16px;
+  font-weight:700;font-size:14.5px;font-family:'Sora',sans-serif;
+  display:flex;align-items:center;justify-content:center;gap:8px;
+  transition:background .15s ease, transform .15s ease;
+}
+.checkout-btn-outline:hover{background:var(--purple-light);transform:translateY(-1px);}
+.checkout-btn-outline:active{transform:translateY(0);}
+
+/* ---------- MODAL (dipakai untuk popup variasi & checkout langsung) ---------- */
+body.modal-open{overflow:hidden;}
+.modal-overlay{
+  position:fixed;inset:0;
+  background:rgba(14,27,77,0.55);
+  display:flex;align-items:flex-end;justify-content:center;
+  z-index:100;
+  opacity:0;pointer-events:none;
+  transition:opacity .25s ease;
+}
+.modal-overlay.show{opacity:1;pointer-events:auto;}
+.modal-box{
+  width:100%;max-width:480px;
+  background:var(--card);
+  border-radius:24px 24px 0 0;
+  padding:22px 20px calc(22px + env(safe-area-inset-bottom));
+  max-height:88vh;overflow-y:auto;
+  transform:translateY(30px);
+  transition:transform .3s ease;
+  box-shadow:0 -12px 40px rgba(14,27,77,0.25);
+}
+.modal-overlay.show .modal-box{transform:translateY(0);}
+@media (min-width:900px){
+  .modal-overlay{align-items:center;}
+  .modal-box{border-radius:24px;}
+}
+.modal-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:16px;}
+.modal-eyebrow{font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--purple);margin-bottom:4px;}
+.modal-head h3{margin:0;font-size:17px;}
+.modal-close{
+  width:32px;height:32px;border-radius:10px;flex:0 0 auto;
+  background:var(--bg);border:1px solid var(--border);color:var(--navy);
+  display:flex;align-items:center;justify-content:center;
+}
+
+/* variant list (popup pilih variasi di menu.html) */
+.variant-list{display:flex;flex-direction:column;gap:10px;max-height:40vh;overflow-y:auto;}
+.variant-option{
+  display:flex;align-items:center;gap:10px;
+  border:1.5px solid var(--border);border-radius:14px;
+  padding:12px;cursor:pointer;
+  transition:border-color .15s ease, background .15s ease;
+}
+.variant-option.selected{border-color:var(--purple);background:var(--purple-light);}
+.vo-radio{
+  width:18px;height:18px;border-radius:50%;border:2px solid var(--border);
+  flex:0 0 auto;display:flex;align-items:center;justify-content:center;
+  transition:border-color .15s ease;
+}
+.variant-option.selected .vo-radio{border-color:var(--purple);}
+.vo-radio-dot{width:9px;height:9px;border-radius:50%;background:transparent;transition:background .15s ease;}
+.variant-option.selected .vo-radio-dot{background:var(--purple);}
+.vo-info{flex:1;display:flex;flex-direction:column;min-width:0;}
+.vo-name{font-weight:700;font-size:13.5px;}
+.vo-desc{font-size:11.5px;color:var(--muted);margin-top:2px;}
+.vo-price{font-weight:800;font-size:13px;color:var(--purple-dark);flex:0 0 auto;}
+.modal-qty-row{display:flex;align-items:center;justify-content:space-between;padding:16px 0;border-top:1px solid var(--border);margin-top:14px;}
+.modal-add-btn:disabled{opacity:.5;}
+
+/* form (checkout langsung) */
+.form-group{margin-bottom:14px;}
+.form-group label{display:block;font-size:12.5px;font-weight:700;margin-bottom:6px;color:var(--navy);}
+.form-group input{
+  width:100%;padding:13px 14px;border-radius:14px;
+  border:1.5px solid var(--border);background:var(--bg);
+  font-family:'Inter',sans-serif;font-size:13.5px;color:var(--navy);outline:none;
+  transition:border-color .15s ease;
+}
+.form-group input:focus{border-color:var(--purple);}
+
+/* payment step (checkout langsung) */
+.pay-status{
+  text-align:center;font-weight:800;font-size:15px;color:var(--purple-dark);
+  margin-bottom:16px;font-family:'Sora',sans-serif;
+}
+.barcode-box{
+  width:180px;height:180px;margin:0 auto 18px;
+  background:#fff;border:1.5px solid var(--border);border-radius:16px;
+  display:flex;align-items:center;justify-content:center;padding:12px;
+  box-shadow:var(--shadow-sm);
+}
+.barcode-box svg{width:100%;height:100%;}
+.pay-total-label{text-align:center;font-size:12px;color:var(--muted);}
+.pay-total{text-align:center;font-weight:800;font-size:22px;color:var(--navy);font-family:'Sora',sans-serif;margin:4px 0 6px;}
+.pay-info{text-align:center;font-size:12px;color:var(--muted);margin-bottom:14px;}
+
 .toast{
   position:fixed;left:50%;bottom:100px;transform:translate(-50%,20px);
   background:var(--navy);color:#fff;
