@@ -315,9 +315,16 @@ function getDirectSelectedLine(){
   const [key, qty] = selected[0];
   const line = getCartLine(key);
   if(!line) return null;
-  const product = line.product;
-  const variant = (product.variants || []).find(v => v.id === line.variantId) || null;
-  return { key, qty, line, product, variant };
+
+  // getCartLine() dari assets/cart.js sudah mengembalikan variant yang benar.
+  // Jangan cari ulang memakai line.variantId karena properti itu memang tidak ada.
+  return {
+    key,
+    qty,
+    line,
+    product: line.product,
+    variant: line.variant || null
+  };
 }
 
 function getDirectXofCode(item){
