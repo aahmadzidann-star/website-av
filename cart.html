@@ -80,6 +80,10 @@
   width:100%;padding:14px;border:1.5px solid var(--purple);border-radius:14px;
   background:#fff;color:var(--purple);font-family:'Sora',sans-serif;font-weight:800;
 }
+
+.qris-loading{text-align:center;padding:24px 8px;color:var(--muted);font-size:12px;line-height:1.6;}
+.qris-loading-spinner{width:28px;height:28px;margin:0 auto 10px;border:3px solid #ede9fe;border-top-color:var(--purple);border-radius:50%;animation:qrisSpin .8s linear infinite;}
+@keyframes qrisSpin{to{transform:rotate(360deg)}}
 </style>
 
 </head>
@@ -167,41 +171,17 @@
         </div>
 
         <div class="barcode-box">
-          <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-            <rect width="100" height="100" fill="#fff"/>
-            <rect x="6" y="6" width="22" height="22" fill="none" stroke="#0E1B4D" stroke-width="4"/>
-            <rect x="13" y="13" width="8" height="8" fill="#0E1B4D"/>
-            <rect x="72" y="6" width="22" height="22" fill="none" stroke="#0E1B4D" stroke-width="4"/>
-            <rect x="79" y="13" width="8" height="8" fill="#0E1B4D"/>
-            <rect x="6" y="72" width="22" height="22" fill="none" stroke="#0E1B4D" stroke-width="4"/>
-            <rect x="13" y="79" width="8" height="8" fill="#0E1B4D"/>
-            <g fill="#0E1B4D">
-              <rect x="34" y="8" width="4" height="4"/><rect x="42" y="8" width="4" height="4"/><rect x="54" y="8" width="4" height="4"/><rect x="62" y="8" width="4" height="4"/>
-              <rect x="34" y="16" width="4" height="4"/><rect x="50" y="16" width="4" height="4"/><rect x="58" y="16" width="4" height="4"/>
-              <rect x="38" y="24" width="4" height="4"/><rect x="46" y="24" width="4" height="4"/><rect x="62" y="24" width="4" height="4"/>
-              <rect x="8" y="34" width="4" height="4"/><rect x="16" y="34" width="4" height="4"/><rect x="34" y="34" width="4" height="4"/><rect x="46" y="34" width="4" height="4"/><rect x="58" y="34" width="4" height="4"/><rect x="70" y="34" width="4" height="4"/><rect x="86" y="34" width="4" height="4"/>
-              <rect x="24" y="42" width="4" height="4"/><rect x="38" y="42" width="4" height="4"/><rect x="54" y="42" width="4" height="4"/><rect x="66" y="42" width="4" height="4"/><rect x="78" y="42" width="4" height="4"/>
-              <rect x="8" y="50" width="4" height="4"/><rect x="34" y="50" width="4" height="4"/><rect x="42" y="50" width="4" height="4"/><rect x="58" y="50" width="4" height="4"/><rect x="70" y="50" width="4" height="4"/><rect x="90" y="50" width="4" height="4"/>
-              <rect x="16" y="58" width="4" height="4"/><rect x="30" y="58" width="4" height="4"/><rect x="46" y="58" width="4" height="4"/><rect x="62" y="58" width="4" height="4"/><rect x="82" y="58" width="4" height="4"/>
-              <rect x="8" y="66" width="4" height="4"/><rect x="38" y="66" width="4" height="4"/><rect x="54" y="66" width="4" height="4"/><rect x="74" y="66" width="4" height="4"/><rect x="90" y="66" width="4" height="4"/>
-              <rect x="34" y="78" width="4" height="4"/><rect x="42" y="78" width="4" height="4"/><rect x="50" y="78" width="4" height="4"/><rect x="66" y="78" width="4" height="4"/><rect x="82" y="78" width="4" height="4"/>
-              <rect x="34" y="86" width="4" height="4"/><rect x="46" y="86" width="4" height="4"/><rect x="58" y="86" width="4" height="4"/><rect x="70" y="86" width="4" height="4"/><rect x="86" y="86" width="4" height="4"/>
-              <rect x="34" y="94" width="4" height="4"/><rect x="42" y="94" width="4" height="4"/><rect x="54" y="94" width="4" height="4"/><rect x="62" y="94" width="4" height="4"/><rect x="78" y="94" width="4" height="4"/>
-            </g>
-          </svg>
+          <div id="direct-qris-code" style="display:flex;align-items:center;justify-content:center;width:100%;min-height:220px;">
+            <div style="font-size:12px;color:var(--muted);">Menyiapkan QRIS...</div>
+          </div>
         </div>
 
         <div class="qris-caption">Scan QRIS untuk membayar</div>
         <div class="pay-total-label">Total Pembayaran</div>
         <div class="pay-total" id="direct-pay-total">Rp0</div>
         <div class="pay-info" id="direct-pay-info"></div>
-        <div class="qris-expire-note">QR pembayaran berlaku selama 15 menit.</div>
-        <div class="note-box">QR di atas masih contoh UI dan belum terhubung ke payment gateway/API QRIS asli.</div>
-
-        <button class="qris-sim-btn" id="simulate-payment-btn" onclick="simulatePaymentSuccess()">
-          Simulasikan Pembayaran Berhasil
-        </button>
-        <div class="qris-sim-note">Tombol ini hanya untuk menguji alur tampilan sebelum API pembayaran dipasang.</div>
+        <div class="qris-expire-note" id="direct-expire-note">Waktu pembayaran mengikuti masa berlaku QRIS.</div>
+        <div class="note-box" id="direct-payment-note">Status pembayaran dicek otomatis. Jangan tutup halaman ini sebelum pembayaran selesai.</div>
       </div>
 
       <!-- STEP 3: SUCCESS -->
@@ -239,6 +219,7 @@
 
 <script src="assets/data.js"></script>
 <script src="assets/cart.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 <script>
 function renderCart(){
   const list = document.getElementById("cart-list");
@@ -296,11 +277,12 @@ function renderCart(){
   document.getElementById("cart-total").textContent = rupiah(selectedPrice());
 }
 
-/* ============ CHECKOUT LANGSUNG (modal) ============ */
+/* ============ CHECKOUT LANGSUNG + XOFTWARE ============ */
 let directPaymentTimer = null;
+let directStatusPoller = null;
 let directPaymentExpiresAt = 0;
+let directTransactionId = "";
 let directBuyer = { wa:"", username:"" };
-const DIRECT_PAYMENT_DURATION = 15 * 60; // 15 menit
 
 function showDirectStep(step){
   const ids = ["direct-step-form","direct-step-payment","direct-step-success","direct-step-expired"];
@@ -316,23 +298,55 @@ function stopDirectPaymentTimer(){
     directPaymentTimer = null;
   }
 }
+function stopDirectStatusPolling(){
+  if(directStatusPoller){
+    clearInterval(directStatusPoller);
+    directStatusPoller = null;
+  }
+}
+function stopDirectWatchers(){
+  stopDirectPaymentTimer();
+  stopDirectStatusPolling();
+}
+
+function getDirectSelectedLine(){
+  const selected = selectedCartEntries();
+  if(selected.length !== 1) return null;
+  const [key, qty] = selected[0];
+  const line = getCartLine(key);
+  if(!line) return null;
+  const product = line.product;
+  const variant = (product.variants || []).find(v => v.id === line.variantId) || null;
+  return { key, qty, line, product, variant };
+}
+
+function getDirectXofCode(item){
+  return item?.variant?.xofCode || item?.product?.xofCode || "";
+}
+
+function normalizeSender(wa){
+  let digits = String(wa || "").replace(/\D/g,"");
+  if(digits.startsWith("0")) digits = "62" + digits.slice(1);
+  return digits;
+}
 
 function openDirectModal(){
   const selected = selectedCartEntries();
-  if(totalItems()===0){
-    showToast("Keranjang kamu masih kosong");
-    return;
-  }
-  if(selected.length===0){
-    showToast("Pilih 1 produk untuk Checkout Langsung");
-    return;
-  }
+  if(totalItems()===0){ showToast("Keranjang kamu masih kosong"); return; }
+  if(selected.length===0){ showToast("Pilih 1 produk untuk Checkout Langsung"); return; }
   if(selected.length>1){
     showToast("Checkout Langsung hanya bisa 1 produk. Pilih satu produk saja.", 3200);
     return;
   }
 
-  stopDirectPaymentTimer();
+  const item = getDirectSelectedLine();
+  if(!getDirectXofCode(item)){
+    showToast("Produk ini belum mendukung Checkout Langsung otomatis.", 3200);
+    return;
+  }
+
+  stopDirectWatchers();
+  directTransactionId = "";
   directBuyer = { wa:"", username:"" };
   document.getElementById("direct-modal-title").textContent = "Data Pemesan";
   showDirectStep("direct-step-form");
@@ -343,74 +357,174 @@ function openDirectModal(){
 }
 
 function closeDirectModal(){
-  stopDirectPaymentTimer();
+  stopDirectWatchers();
   document.getElementById("direct-modal-overlay").classList.remove("show");
   document.body.classList.remove("modal-open");
 }
-
 function closeDirectModalOutside(e){
   if(e.target.id === "direct-modal-overlay") closeDirectModal();
 }
 
-function submitDirectForm(){
+async function submitDirectForm(){
   const wa = document.getElementById("direct-wa").value.trim();
   const username = document.getElementById("direct-username").value.trim();
 
-  if(!wa || !username){
-    showToast("Lengkapi nomor WhatsApp & username dulu");
-    return;
-  }
+  if(!wa || !username){ showToast("Lengkapi nomor WhatsApp & username dulu"); return; }
 
-  const waDigits = wa.replace(/\D/g,"");
-  if(waDigits.length < 9){
-    showToast("Nomor WhatsApp tidak valid");
-    return;
-  }
+  const sender = normalizeSender(wa);
+  if(sender.length < 10){ showToast("Nomor WhatsApp tidak valid"); return; }
+
+  const item = getDirectSelectedLine();
+  if(!item){ showToast("Pilih tepat 1 produk untuk Checkout Langsung"); return; }
+
+  const xofCode = getDirectXofCode(item);
+  if(!xofCode){ showToast("Produk ini belum mendukung Checkout Langsung otomatis.", 3200); return; }
 
   directBuyer = { wa, username };
-  document.getElementById("direct-modal-title").textContent = "Pembayaran QRIS";
+  document.getElementById("direct-modal-title").textContent = "Membuat Pembayaran";
+  showDirectStep("direct-step-payment");
+
+  const qrEl = document.getElementById("direct-qris-code");
+  qrEl.innerHTML = '<div class="qris-loading"><div class="qris-loading-spinner"></div>Membuat QRIS asli...</div>';
   document.getElementById("direct-pay-total").textContent = rupiah(selectedPrice());
   document.getElementById("direct-pay-info").textContent = username + " • " + wa;
-  showDirectStep("direct-step-payment");
-  startDirectPaymentTimer();
+  document.getElementById("direct-pay-timer").textContent = "--:--";
+  document.getElementById("direct-payment-note").textContent = "Sedang menghubungkan pembayaran...";
+
+  try{
+    const response = await fetch("/api/checkout", {
+      method:"POST",
+      headers:{"Content-Type":"application/json"},
+      body:JSON.stringify({
+        sender,
+        code:xofCode,
+        quantity:Number(item.qty) || 1
+      })
+    });
+
+    const result = await response.json().catch(()=>({}));
+    if(!response.ok || result.status !== true || !result.data){
+      throw new Error(result.message || "Gagal membuat pembayaran QRIS");
+    }
+
+    const payment = result.data;
+    if(!payment.transaction_id || !payment.qr_string){
+      throw new Error("Data QRIS dari server tidak lengkap");
+    }
+
+    directTransactionId = payment.transaction_id;
+    document.getElementById("direct-modal-title").textContent = "Pembayaran QRIS";
+    document.getElementById("direct-pay-total").textContent =
+      rupiah(Number(payment.total_to_pay ?? payment.amount ?? selectedPrice()));
+    document.getElementById("direct-payment-note").textContent =
+      "Status pembayaran dicek otomatis. Jangan tutup halaman ini sebelum pembayaran selesai.";
+
+    renderDirectQr(payment.qr_string);
+    startDirectPaymentTimer(payment.expired_at);
+    startDirectStatusPolling();
+  }catch(error){
+    console.error("CHECKOUT ERROR:", error);
+    stopDirectWatchers();
+    document.getElementById("direct-modal-title").textContent = "Gagal Membuat Pembayaran";
+    qrEl.innerHTML = '<div class="qris-loading">QRIS gagal dibuat.<br>Silakan tutup lalu coba kembali.</div>';
+    document.getElementById("direct-payment-note").textContent = error.message || "Terjadi kesalahan.";
+    document.getElementById("direct-pay-timer").textContent = "--:--";
+    showToast(error.message || "Gagal membuat pembayaran QRIS", 3500);
+  }
 }
 
-function startDirectPaymentTimer(){
+function renderDirectQr(qrString){
+  const qrEl = document.getElementById("direct-qris-code");
+  qrEl.innerHTML = "";
+  if(typeof QRCode === "undefined"){
+    qrEl.innerHTML = '<div class="qris-loading">QR gagal dimuat. Refresh halaman lalu coba lagi.</div>';
+    return;
+  }
+  new QRCode(qrEl, {
+    text:qrString,
+    width:220,
+    height:220,
+    correctLevel:QRCode.CorrectLevel.M
+  });
+}
+
+function parseXoftwareExpiry(expiredAt){
+  if(!expiredAt) return Date.now() + 15*60*1000;
+  if(typeof expiredAt === "number") return expiredAt < 1e12 ? expiredAt*1000 : expiredAt;
+  const numeric = Number(expiredAt);
+  if(Number.isFinite(numeric) && numeric > 0) return numeric < 1e12 ? numeric*1000 : numeric;
+  const parsed = Date.parse(expiredAt);
+  return Number.isNaN(parsed) ? Date.now() + 15*60*1000 : parsed;
+}
+
+function startDirectPaymentTimer(expiredAt){
   stopDirectPaymentTimer();
-  directPaymentExpiresAt = Date.now() + (DIRECT_PAYMENT_DURATION * 1000);
+  directPaymentExpiresAt = parseXoftwareExpiry(expiredAt);
   updateDirectPaymentTimer();
-  directPaymentTimer = setInterval(updateDirectPaymentTimer, 1000);
+  directPaymentTimer = setInterval(updateDirectPaymentTimer,1000);
 }
 
 function updateDirectPaymentTimer(){
-  const remaining = Math.max(0, Math.ceil((directPaymentExpiresAt - Date.now()) / 1000));
-  const minutes = String(Math.floor(remaining / 60)).padStart(2,"0");
-  const seconds = String(remaining % 60).padStart(2,"0");
-  const timerEl = document.getElementById("direct-pay-timer");
-  if(timerEl) timerEl.textContent = `${minutes}:${seconds}`;
-
-  if(remaining <= 0){
-    stopDirectPaymentTimer();
+  const remaining = Math.max(0,Math.ceil((directPaymentExpiresAt-Date.now())/1000));
+  const minutes = String(Math.floor(remaining/60)).padStart(2,"0");
+  const seconds = String(remaining%60).padStart(2,"0");
+  document.getElementById("direct-pay-timer").textContent = `${minutes}:${seconds}`;
+  if(remaining<=0){
+    stopDirectWatchers();
     document.getElementById("direct-modal-title").textContent = "Pembayaran Kedaluwarsa";
     showDirectStep("direct-step-expired");
   }
 }
 
-/* Dummy UI sebelum payment gateway/API asli dipasang */
-function simulatePaymentSuccess(){
-  stopDirectPaymentTimer();
+function startDirectStatusPolling(){
+  stopDirectStatusPolling();
+  checkDirectPaymentStatus();
+  directStatusPoller = setInterval(checkDirectPaymentStatus,5000);
+}
+
+function paymentStatusOf(data){
+  return String(data?.status ?? data?.payment_status ?? data?.transaction_status ?? "").trim().toLowerCase();
+}
+
+async function checkDirectPaymentStatus(){
+  if(!directTransactionId) return;
+  try{
+    const response = await fetch("/api/status", {
+      method:"POST",
+      headers:{"Content-Type":"application/json"},
+      body:JSON.stringify({transaction_id:directTransactionId})
+    });
+    const result = await response.json().catch(()=>({}));
+    if(!response.ok || result.status !== true) return;
+
+    const status = paymentStatusOf(result.data);
+    if(["success","paid","settlement","completed","complete","sukses"].includes(status)){
+      showDirectPaymentSuccess();
+    }else if(["expired","expire","failed","fail","cancelled","canceled"].includes(status)){
+      stopDirectWatchers();
+      document.getElementById("direct-modal-title").textContent = "Pembayaran Kedaluwarsa";
+      showDirectStep("direct-step-expired");
+    }
+  }catch(error){
+    console.warn("STATUS CHECK ERROR:",error);
+  }
+}
+
+function showDirectPaymentSuccess(){
+  stopDirectWatchers();
   document.getElementById("direct-modal-title").textContent = "Pembayaran Selesai";
-  document.getElementById("direct-success-total").textContent = rupiah(selectedPrice());
+  document.getElementById("direct-success-total").textContent =
+    document.getElementById("direct-pay-total").textContent || rupiah(selectedPrice());
   document.getElementById("direct-success-user").textContent = directBuyer.username || "-";
   showDirectStep("direct-step-success");
 }
 
 function restartDirectPayment(){
-  document.getElementById("direct-modal-title").textContent = "Pembayaran QRIS";
-  document.getElementById("direct-pay-total").textContent = rupiah(selectedPrice());
-  document.getElementById("direct-pay-info").textContent = directBuyer.username + " • " + directBuyer.wa;
-  showDirectStep("direct-step-payment");
-  startDirectPaymentTimer();
+  stopDirectWatchers();
+  directTransactionId = "";
+  document.getElementById("direct-modal-title").textContent = "Data Pemesan";
+  showDirectStep("direct-step-form");
+  showToast("Silakan buat pembayaran baru");
 }
 
 /* ============ INIT ============ */
