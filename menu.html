@@ -125,21 +125,13 @@ function renderGrid(){
   } else {
     empty.style.display = "none";
     grid.innerHTML = list.map(p=>{
-      const qty = cart[p.id]||0;
       return `
-      <div class="p-card">
-        <div class="p-thumb" onclick="location.href='detail.html?id=${p.id}'"><img src="${p.img}" alt="${p.name}" class="p-img"></div>
-        <div class="p-name" onclick="location.href='detail.html?id=${p.id}'">${p.name}</div>
+      <div class="p-card p-card-link" onclick="location.href='detail.html?id=${p.id}'">
+        <div class="p-thumb"><img src="${p.img}" alt="${p.name}" class="p-img"></div>
+        <div class="p-name">${p.name}</div>
         <div class="p-desc">${p.shortDesc}</div>
         <div class="p-bottom">
           <span class="p-price">${rupiah(p.price)}</span>
-          ${qty>0 ? `
-            <div class="stepper">
-              <button onclick="changeQty('${p.id}',-1,true)">−</button>
-              <span>${qty}</span>
-              <button onclick="changeQty('${p.id}',1,true)">+</button>
-            </div>
-          ` : `<button class="add-btn" onclick="changeQty('${p.id}',1,true)">+</button>`}
         </div>
       </div>`;
     }).join("");

@@ -10,9 +10,8 @@
 <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
-<div class="app">
+<div class="app detail-page-app">
 
-  <!-- ============ PRODUCT DETAIL ============ -->
   <section class="view active" id="view-detail">
     <div class="detail-hero" id="detail-hero">
       <a class="detail-back" href="menu.html">
@@ -29,63 +28,183 @@
       <div class="detail-price" id="detail-price"></div>
       <div class="detail-desc-label">Deskripsi Produk</div>
       <div class="detail-desc" id="detail-desc"></div>
-      <div class="qty-row">
-        <span class="lbl">Jumlah Pesanan</span>
-        <div class="stepper">
-          <button onclick="detailQty(-1)">−</button>
-          <span id="detail-qty">1</span>
-          <button onclick="detailQty(1)">+</button>
-        </div>
-      </div>
-      <button class="big-add-btn" id="detail-add-btn" onclick="addFromDetail()"></button>
     </div>
   </section>
 
+  <!-- Tombol aksi seperti marketplace: selalu di bawah -->
+  <div class="detail-action-bar">
+    <button class="detail-action secondary" onclick="openVariantModal('add')">Tambah Pesanan</button>
+    <button class="detail-action primary" onclick="openVariantModal('buy')">Beli Langsung</button>
+  </div>
+
   <div class="toast" id="toast"></div>
+
+  <!-- Popup variasi -->
+  <div class="modal-overlay" id="variant-modal-overlay" onclick="closeVariantModalOutside(event)">
+    <div class="modal-box variant-modal" role="dialog" aria-modal="true">
+      <div class="variant-product-head">
+        <img id="variant-product-img" class="variant-product-img" alt="Produk">
+        <div class="variant-product-info">
+          <div class="variant-product-name" id="variant-product-name"></div>
+          <div class="variant-product-price" id="variant-product-price"></div>
+          <div class="variant-stock-text" id="variant-stock-text"></div>
+        </div>
+        <button class="modal-close" onclick="closeVariantModal()" aria-label="Tutup">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 6l12 12M18 6L6 18" stroke-linecap="round"/></svg>
+        </button>
+      </div>
+
+      <div class="variant-section-title">Pilih Variasi</div>
+      <div class="variant-list variant-market-list" id="variant-list"></div>
+
+      <div class="modal-qty-row">
+        <span class="modal-qty-label">Jumlah</span>
+        <div class="stepper variant-stepper">
+          <button onclick="changeModalQty(-1)">−</button>
+          <span id="modal-qty">1</span>
+          <button onclick="changeModalQty(1)">+</button>
+        </div>
+      </div>
+
+      <div class="variant-modal-footer">
+        <div class="variant-total-wrap">
+          <div class="variant-total-label">TOTAL</div>
+          <div class="variant-total" id="variant-total">Rp0</div>
+        </div>
+        <button class="variant-confirm-btn" id="variant-confirm-btn" onclick="confirmVariantAction()">Tambah Pesanan</button>
+      </div>
+    </div>
+  </div>
 
 </div>
 
 <script src="assets/data.js"></script>
 <script src="assets/cart.js"></script>
 <script>
-/* ============ STATE ============ */
 let currentDetailId = null;
-let detailQtyVal = 1;
+let currentProduct = null;
+let selectedVariantIndex = -1;
+let modalQtyVal = 1;
+let variantAction = "add";
 
 function getParam(name){
   return new URLSearchParams(window.location.search).get(name);
 }
 
-function updateDetailBtn(p){
-  document.getElementById("detail-add-btn").innerHTML = `Tambah Pesanan &ndash; ${rupiah(p.price*detailQtyVal)}`;
-}
-function detailQty(delta){
-  detailQtyVal = Math.max(1, detailQtyVal+delta);
-  document.getElementById("detail-qty").textContent = detailQtyVal;
-  const p = PRODUCTS.find(x=>x.id===currentDetailId);
-  updateDetailBtn(p);
-}
-function addFromDetail(){
-  const cur = cart[currentDetailId]||0;
-  cart[currentDetailId] = cur + detailQtyVal;
-  saveCart();
-  showToast("Ditambahkan ke keranjang");
-  window.location.href = "menu.html";
+function openVariantModal(action){
+  variantAction = action;
+  modalQtyVal = 1;
+  const variants = getProductVariants(currentProduct);
+  const firstAvailableIndex = variants.findIndex(v => Number(v.stock ?? 999) > 0);
+  selectedVariantIndex = firstAvailableIndex >= 0 ? firstAvailableIndex : (variants.length ? 0 : -1);
+
+  document.getElementById("variant-product-img").src = currentProduct.img;
+  document.getElementById("variant-product-name").textContent = currentProduct.name;
+  document.getElementById("modal-qty").textContent = modalQtyVal;
+  document.getElementById("variant-confirm-btn").textContent = action === "buy" ? "Beli Langsung" : "Tambah Pesanan";
+  renderVariantList();
+  updateVariantSummary();
+  document.getElementById("variant-modal-overlay").classList.add("show");
+  document.body.classList.add("modal-open");
 }
 
-/* ============ INIT ============ */
+function closeVariantModal(){
+  document.getElementById("variant-modal-overlay").classList.remove("show");
+  document.body.classList.remove("modal-open");
+}
+function closeVariantModalOutside(e){
+  if(e.target.id === "variant-modal-overlay") closeVariantModal();
+}
+
+function renderVariantList(){
+  const variants = getProductVariants(currentProduct);
+  document.getElementById("variant-list").innerHTML = variants.map((v, index)=>{
+    const stock = Number(v.stock ?? 999);
+    const disabled = stock <= 0;
+    const selected = index === selectedVariantIndex;
+    const price = v.price != null ? v.price : currentProduct.price;
+    return `
+      <button class="variant-card ${selected?'selected':''} ${disabled?'disabled':''}" ${disabled?'disabled':''} onclick="selectVariant(${index})">
+        <div class="variant-card-top">
+          <div class="variant-check">${selected?'✓':''}</div>
+          <div class="variant-card-name">${v.name}</div>
+          <div class="variant-card-price">${rupiah(price)}</div>
+        </div>
+        <div class="variant-meta-row">
+          ${v.type ? `<span class="variant-chip type">${v.type}</span>` : ''}
+          ${v.warranty ? `<span class="variant-chip warranty">${v.warranty}</span>` : ''}
+          <span class="variant-chip stock ${disabled?'empty':''}">${disabled?'Habis':'Stok: '+stock}</span>
+        </div>
+      </button>`;
+  }).join("");
+}
+
+function selectVariant(index){
+  const variants = getProductVariants(currentProduct);
+  const variant = variants[index];
+  if(!variant || Number(variant.stock ?? 999) <= 0) return;
+  selectedVariantIndex = index;
+  modalQtyVal = 1;
+  document.getElementById("modal-qty").textContent = modalQtyVal;
+  renderVariantList();
+  updateVariantSummary();
+}
+
+function getSelectedVariant(){
+  const variants = getProductVariants(currentProduct);
+  return selectedVariantIndex >= 0 ? (variants[selectedVariantIndex] || null) : null;
+}
+
+function changeModalQty(delta){
+  const variant = getSelectedVariant();
+  if(!variant) return;
+  const stock = Math.max(1, Number(variant.stock ?? 999));
+  modalQtyVal = Math.min(stock, Math.max(1, modalQtyVal + delta));
+  document.getElementById("modal-qty").textContent = modalQtyVal;
+  updateVariantSummary();
+}
+
+function updateVariantSummary(){
+  const variant = getSelectedVariant();
+  if(!variant) return;
+  const price = variant.price != null ? variant.price : currentProduct.price;
+  const stock = Number(variant.stock ?? 999);
+  document.getElementById("variant-product-price").textContent = rupiah(price);
+  document.getElementById("variant-stock-text").textContent = stock > 0 ? `Stok: ${stock}` : "Stok habis";
+  document.getElementById("variant-total").textContent = rupiah(price * modalQtyVal);
+  document.getElementById("variant-confirm-btn").disabled = stock <= 0;
+}
+
+function confirmVariantAction(){
+  const variant = getSelectedVariant();
+  if(!variant) return;
+  const stock = Number(variant.stock ?? 999);
+  if(stock <= 0){ showToast("Variasi sedang habis"); return; }
+
+  const key = makeCartKey(currentProduct.id, variant.id);
+  const currentQty = cart[key] || 0;
+  cart[key] = Math.min(stock, currentQty + modalQtyVal);
+  saveCart();
+
+  if(variantAction === "buy"){
+    try{ sessionStorage.setItem("avstore_direct_key", key); }catch(e){}
+    window.location.href = "cart.html";
+  }else{
+    /* kembali ke menu; cart-bar otomatis muncul dengan jumlah item */
+    window.location.href = "menu.html";
+  }
+}
+
 (function initDetail(){
   const id = getParam("id");
   const p = PRODUCTS.find(x=>x.id===id) || PRODUCTS[0];
   currentDetailId = p.id;
-  detailQtyVal = 1;
+  currentProduct = p;
   document.getElementById("detail-icon").innerHTML = `<img src="${p.img}" alt="${p.name}" class="detail-img">`;
   document.getElementById("detail-cat").textContent = p.category;
   document.getElementById("detail-name").textContent = p.name;
   document.getElementById("detail-price").textContent = rupiah(p.price);
   document.getElementById("detail-desc").textContent = p.longDesc;
-  document.getElementById("detail-qty").textContent = detailQtyVal;
-  updateDetailBtn(p);
 })();
 </script>
 <script type="module" src="assets/analytics.js"></script>

@@ -12,80 +12,117 @@ const ICONS = {
 const CATEGORIES = ["Semua", "Aplikasi Premium", "Unblock IMEI", "iPhone"];
 
 const PRODUCTS = [
+
   {
-    id:"netflix", name:"Netflix Premium", category:"Aplikasi Premium", price:30000,
+    id:"netflix", name:"Netflix Premium", category:"Aplikasi Premium", price:28000,
+    // Edit daftar variasi produk ini sesuai kebutuhan.
+    variants:[
+      { id:"paket-1", name:"1 Bulan", price:28000, stock:10, xofCode:"net1u", type:"Private", warranty:"Full Garansi" }
+    ],
     icon:"streaming", img:"assets/netflix.png",
     shortDesc:"Private Profil, 1 Bulan, 4K UHD, Full Garansi.",
     longDesc:"Tonton ribuan film dan serial eksklusif berkualitas HD tanpa batas.\n• 4K UHD, Support All Device\n• Private Profile (1 Profile 1 User)\n• Full Garansi 1 Bulan\n• Ada Kendala ? Segera Hubungi Admin !"
   },
+
   {
-    id:"spotify", name:"Spotify Premium", category:"Aplikasi Premium", price:30000, 
+    id:"spotify", name:"Spotify Premium", category:"Aplikasi Premium", price:20000, 
+    // Edit daftar variasi produk ini sesuai kebutuhan.
+    variants:[
+      { id:"paket-1", name:"Paket 1", price:20000, stock:10, xofCode:"spo1b", type:"Private", warranty:"Full Garansi" }
+    ],
     icon:"music", img:"assets/spotify.png",
     shortDesc:"Private Akun, 1 Bulan, Akun Seller, Full Garansi.",
     longDesc:"Nikmati jutaan lagu tanpa iklan, kualitas audio tinggi, dan bisa didownload untuk didengarkan offline.\n• Private Akun\n• Full Garansi 1 Bulan\n• Akun Dari Seller, Tinggal Login\n• Ada Kendala ? Segera Hubungi Admin !"
   },
+
   {
-    id:"youtube", name:"Youtube Premium", category:"Aplikasi Premium", price:32000, 
+    id:"youtube", name:"Youtube Premium", category:"Aplikasi Premium", price:18000, 
+    // Edit daftar variasi produk ini sesuai kebutuhan.
+    variants:[
+      { id:"paket-1", name:"1 Bulan", price:18000, stock:10, xofCode:"yt1b", type:"Private", warranty:"Full Garansi" },
+      { id:"paket-2", name:"3 Bulan", price:30000, stock:10, xofCode:"yt3b", type:"Private", warranty:"Full Garansi" },
+      { id:"paket-3", name:"5 Bulan", price:45000, stock:10, xofCode:"yt5b", type:"Private", warranty:"Full Garansi" }
+    ],
     icon:"streaming", img:"assets/youtube.png",
-    shortDesc:"Private Akun, 3 Bulan, Akun Seller, Full Garansi.",
-    longDesc:"Nikmati tayangan video dan musik bebas iklan yang bisa diputar di latar belakang.\n• 3 Bulan Mixplan Full Garansi\n• Akun Dari Seller, Tinggal Login\n• Ada Kendala ? Segera Hubungi Admin !"
+    shortDesc:"Private Akun, Akun Seller, Full Garansi.",
+    longDesc:"Nikmati tayangan video dan musik bebas iklan yang bisa diputar di latar belakang.\n• Paket Indplan & Mixplan \n• Full Garansi\n• Akun Dari Seller, Tinggal Login\n• Ada Kendala ? Segera Hubungi Admin !"
   },
+
   {
-    id:"disney", name:"Disney+ Hotstar", category:"Aplikasi Premium", price:15000, 
+    id:"disney", name:"Disney+ Hotstar", category:"Aplikasi Premium", price:12000, 
+    // Edit daftar variasi produk ini sesuai kebutuhan.
+    variants:[
+      { id:"paket-1", name:"Paket 1", price:12000, stock:10, xofCode:"disney", type:"Private", warranty:"Full Garansi" }
+    ],
     icon:"spark", img:"assets/disney.png",
     shortDesc:"Sharing Akun, 1 Bulan, Akun Seller, Full Garansi.",
     longDesc:"Akses ke katalog Disney, Marvel, Star Wars, Pixar, sampai tayangan olahraga pilihan. Satu akun, hiburan lengkap untuk seluruh keluarga.\n• Sharing Akun\n• Premium, Support All Device\n• Ada Kendala ? Segera Hubungi Admin !"
    },
+
   {
-    id:"capcut", name:"Capcut Pro 7D", category:"Aplikasi Premium", price:13000, 
+    id:"capcut", name:"Capcut Pro", category:"Aplikasi Premium", price:13000, 
+    // Edit daftar variasi produk ini sesuai kebutuhan.
+    variants:[
+      { id:"paket-1", name:"7 Hari", price:13000, stock:10, xofCode:"cc35d", type:"Private", warranty:"Full Garansi" },
+      { id:"paket-2", name:"1 Bulan", price:35000, stock:10, xofCode:"cc7d", type:"Private", warranty:"Full Garansi" }
+    ],
     icon:"streaming", img:"assets/capcut.png",
-    shortDesc:"Private Akun, 7 Hari, Akun Seller, Full Garansi.",
-    longDesc:"Edit video layaknya profesional dengan akses penuh ke semua efek dan fitur berbayar.\n• Paket Pro Full Garansi 7 Hari\n• Akun Dari Seller, Tinggal Login\n• Ada Kendala ? Segera Hubungi Admin !"
+    shortDesc:"Private Akun, Akun Seller, Full Garansi.",
+    longDesc:"Edit video layaknya profesional dengan akses penuh ke semua efek dan fitur berbayar.\n• Paket Pro Full Garansi \n• Akun Dari Seller, Tinggal Login\n• Ada Kendala ? Segera Hubungi Admin !"
   },
+
   {
-    id:"capcut1b", name:"Capcut Pro 1B", category:"Aplikasi Premium", price:32000, 
-    icon:"streaming", img:"assets/capcut.png",
-    shortDesc:"Private Akun, 1 Bulan, Akun Seller, Full Garansi.",
-    longDesc:"Edit video layaknya profesional dengan akses penuh ke semua efek dan fitur berbayar.\n• Paket Pro Full Garansi 1 Bulan\n• Akun Dari Seller, Tinggal Login\n• Ada Kendala ? Segera Hubungi Admin !"
-  },
-  {
-    id:"prime", name:"Prime Video", category:"Aplikasi Premium", price:15000, 
+    id:"prime", name:"Prime Video", category:"Aplikasi Premium", price:13000, 
+    // Edit daftar variasi produk ini sesuai kebutuhan.
+    variants:[
+      { id:"paket-1", name:"Paket 1", price:13000, stock:10, xofCode:"prime", type:"Private", warranty:"Full Garansi" }
+    ],
     icon:"spark", img:"assets/prime.png",
     shortDesc:"Private Akun, 1 Bulan, Akun Seller, Full Garansi.",
     longDesc:"Akses serial orisinal pemenang penghargaan dan koleksi film eksklusif Amazon.\n• Private Akun, Bisa All Device\n• Full Garansi 1 Bulan\n• Ada Kendala ? Segera Hubungi Admin !"
    },
+
    {
-    id:"canva", name:"Canva Pro", category:"Aplikasi Premium", price:15000, 
+    id:"canva", name:"Canva Pro", category:"Aplikasi Premium", price:10000, 
+    // Edit daftar variasi produk ini sesuai kebutuhan.
+    variants:[
+      { id:"paket-1", name:"Paket 1", price:10000, stock:10, xofCode:"canvaedu", type:"Private", warranty:"Full Garansi" }
+    ],
     icon:"spark", img:"assets/canva.png",
     shortDesc:"Via Invite, Lifetime, Paket Pro, Garansi.",
     longDesc:"Buat desain grafis memukau dengan mudah menggunakan jutaan elemen dan template premium.\n• Via invite email (email mu diinvite ke pro)\n• Durasi Lifetime Garansi 5 Bulan\n• Ada Kendala ? Segera Hubungi Admin !"
   },
+
   {
-    id:"vidiomobile", name:"Vidio Mobile", category:"Aplikasi Premium", price:30000, 
+    id:"vidio", name:"Vidio Platinum", category:"Aplikasi Premium", price:30000, 
+    // Edit daftar variasi produk ini sesuai kebutuhan.
+    variants:[
+      { id:"paket-1", name:"Mobile", price:28000, stock:10, xofCode:"vidio", type:"Private", warranty:"Full Garansi" },
+      { id:"paket-2", name:"All Device", price:40000, stock:10, xofCode:"vidioall", type:"Private", warranty:"Full Garansi" }
+    ],
     icon:"spark", img:"assets/vidio.png",
-    shortDesc:"Private Akun, 1 Bulan, Khusus Mobile, Full Garansi.",
-    longDesc:"Pusat tayangan olahraga terlengkap, sinetron favorit, dan serial orisinal lokal eksklusif tanpa jeda iklan.\n• Khusus Mobile, Paket Platinum\n• Full Garansi 1 Bulan\n• Ada Kendala ? Segera Hubungi Admin !"
+    shortDesc:"Private Akun, 1 Bulan, Full Garansi.",
+    longDesc:"Pusat tayangan olahraga terlengkap, sinetron favorit, dan serial orisinal lokal eksklusif tanpa jeda iklan.\n• Mobile = Hanya Bisa di HP/TAB\n• All Device = Support Semua Perangkat\n• Paket Platinum\n• Full Garansi 1 Bulan\n• Ada Kendala ? Segera Hubungi Admin !"
   },
+
   {
-    id:"vidio", name:"Vidio Platinum", category:"Aplikasi Premium", price:45000, 
-    icon:"spark", img:"assets/vidio.png",
-    shortDesc:"Private Akun, 1 Bulan, All Device, Full Garansi.",
-    longDesc:"Pusat tayangan olahraga terlengkap, sinetron favorit, dan serial orisinal lokal eksklusif tanpa jeda iklan.\n• Support All Device, Paket Platinum\n• Full Garansi 1 Bulan\n• Ada Kendala ? Segera Hubungi Admin !"
-  },
-  {
-    id:"imei3", name:"Unblock IMEI 3 Bulan", category:"Unblock IMEI", price:150000, 
+    id:"imei1", name:"Unblock IMEI", category:"Unblock IMEI", price:125000, 
+    // Edit daftar variasi produk ini sesuai kebutuhan.
+    variants:[
+      { id:"paket-1", name:"1 Bulan", price:125000, stock:10, type:"Proses Fast", warranty:"Full Garansi" },
+      { id:"paket-2", name:"3 Bulan", price:125000, stock:10, type:"Proses Slow", warranty:"Full Garansi" }
+    ],
     icon:"unlock", img:"assets/imei.png",
-    shortDesc:"Layanan Unblock IMEI iPhone, Garansi 3 bulan.",
-    longDesc:"Layanan unblock IMEI untuk iPhone yang terblokir/blacklist, dengan masa garansi 3 bulan. Proses dibantu penuh oleh admin, tinggal kirim data unit kamu."
+    shortDesc:"Layanan Unblock IMEI iPhone, Full Garansi.",
+    longDesc:"Layanan unblock IMEI untuk iPhone yang terblokir/blacklist, dengan masa garansi full. Proses dibantu penuh oleh admin, tinggal kirim data unit kamu."
   },
-  {
-    id:"imei1", name:"Unblock IMEI 1 Bulan", category:"Unblock IMEI", price:125000, 
-    icon:"unlock", img:"assets/imei.png",
-    shortDesc:"Layanan Unblock IMEI iPhone, Garansi 1 bulan.",
-    longDesc:"Layanan unblock IMEI untuk iPhone yang terblokir/blacklist, dengan masa garansi 1 bulan. Proses dibantu penuh oleh admin, tinggal kirim data unit kamu."
-  },
+
   {
     id:"iphone13", name:"iPhone 13 256GB", category:"iPhone", price:5400000, 
+    // Edit daftar variasi produk ini sesuai kebutuhan.
+    variants:[
+      { id:"paket-1", name:"Paket 1", price:5400000, stock:10, type:"Private", warranty:"Full Garansi" }
+    ],
     icon:"phone", img:"assets/iphone.png",
     shortDesc:"Unit Nominus, Bisa cek ig : @avphone_katalog",
     longDesc:"iPhone 13 256GB Inter ALL Operator, unit mulus nominus , fungsi semua on, battery health diatas 90, info selengkapnya silahkan cek ig @avphone_katalog"
