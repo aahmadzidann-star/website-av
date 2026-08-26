@@ -52,15 +52,29 @@ html, body{
     display:flex;
     align-items:center;
     justify-content:center;
-    min-height:100vh;
-    padding:40px 20px;
+
+    width:100vw;
+    height:100vh;
+    min-height:0;
+    padding:0;
+
+    overflow:hidden;
   }
+
   .app{
-    max-width:420px;
+    width:420px;
+    max-width:none;
+
     height:860px;
-    max-height:calc(100vh - 80px);
+    min-height:860px;
+    max-height:none;
+
     border-radius:36px;
     overflow-y:auto;
+
+    transform:scale(0.55);
+    transform-origin:center center;
+    flex-shrink:0;
   }
 }
 
