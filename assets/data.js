@@ -179,7 +179,7 @@ longDesc:"Nikmati VPN Pro Private dengan akses fitur premium untuk koneksi yang 
     // Edit daftar variasi produk ini sesuai kebutuhan.
     variants:[
       { id:"paket-1", name:"1 Bulan", price:125000, stock:10, type:"Proses Fast", warranty:"Full Garansi" },
-      { id:"paket-2", name:"3 Bulan", price:125000, stock:10, type:"Proses Slow", warranty:"Full Garansi" }
+      { id:"paket-2", name:"3 Bulan", price:150000, stock:10, type:"Proses Slow", warranty:"Full Garansi" }
     ],
     icon:"unlock", img:"assets/imei.png",
     shortDesc:"Layanan Unblock IMEI iPhone, Full Garansi.",
