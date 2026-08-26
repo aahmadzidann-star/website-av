@@ -14,10 +14,10 @@ const CATEGORIES = ["Semua", "Aplikasi Premium", "Unblock IMEI", "iPhone"];
 const PRODUCTS = [
 
   {
-    id:"netflix", name:"Netflix Premium", category:"Aplikasi Premium", price:28000,
+    id:"netflix", name:"Netflix Premium", category:"Aplikasi Premium", price:30000,
     // Edit daftar variasi produk ini sesuai kebutuhan.
     variants:[
-      { id:"paket-1", name:"1 Bulan", price:28000, stock:10, xofCode:"net1u", type:"Private", warranty:"Full Garansi" }
+      { id:"paket-1", name:"1 Bulan", price:30000, stock:10, xofCode:"net1u", type:"Private", warranty:"Full Garansi" }
     ],
     icon:"streaming", img:"assets/netflix.png",
     shortDesc:"Private Profil, 1 Bulan, 4K UHD, Full Garansi.",
@@ -25,10 +25,10 @@ const PRODUCTS = [
   },
 
   {
-    id:"spotify", name:"Spotify Premium", category:"Aplikasi Premium", price:20000, 
+    id:"spotify", name:"Spotify Premium", category:"Aplikasi Premium", price:23000, 
     // Edit daftar variasi produk ini sesuai kebutuhan.
     variants:[
-      { id:"paket-1", name:"Paket 1", price:20000, stock:10, xofCode:"spo1b", type:"Private", warranty:"Full Garansi" }
+      { id:"paket-1", name:"Paket 1", price:23000, stock:10, xofCode:"spo1b", type:"Private", warranty:"Full Garansi" }
     ],
     icon:"music", img:"assets/spotify.png",
     shortDesc:"Private Akun, 1 Bulan, Akun Seller, Full Garansi.",
@@ -83,10 +83,10 @@ const PRODUCTS = [
    },
 
   {
-    id:"viu7b", name:"Viu Premium", category:"Aplikasi Premium", price:13000, 
+    id:"viu7b", name:"Viu Premium", category:"Aplikasi Premium", price:10000, 
     // Edit daftar variasi produk ini sesuai kebutuhan.
     variants:[
-      { id:"paket-1", name:"Paket 1", price:13000, stock:10, xofCode:"viu7b", type:"Private", warranty:"Full Garansi" }
+      { id:"paket-1", name:"Paket 1", price:10000, stock:10, xofCode:"viu7b", type:"Private", warranty:"Full Garansi" }
     ],
     icon:"spark", img:"assets/viu.png",
     shortDesc:"Private Akun, Paket Premium, Full Garansi, Support All Device.",
@@ -107,10 +107,10 @@ longDesc:"Nikmati VIU Private dengan Paket Premium untuk pengalaman streaming te
    },
 
   {
-    id:"prime", name:"Prime Video", category:"Aplikasi Premium", price:13000, 
+    id:"prime", name:"Prime Video", category:"Aplikasi Premium", price:15000, 
     // Edit daftar variasi produk ini sesuai kebutuhan.
     variants:[
-      { id:"paket-1", name:"Paket 1", price:13000, stock:10, xofCode:"prime", type:"Private", warranty:"Full Garansi" }
+      { id:"paket-1", name:"Paket 1", price:15000, stock:10, xofCode:"prime", type:"Private", warranty:"Full Garansi" }
     ],
     icon:"spark", img:"assets/prime.png",
     shortDesc:"Private Akun, 1 Bulan, Akun Seller, Full Garansi.",
