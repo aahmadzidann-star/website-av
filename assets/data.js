@@ -117,6 +117,40 @@ longDesc:"Nikmati VIU Private dengan Paket Premium untuk pengalaman streaming te
     longDesc:"Akses serial orisinal pemenang penghargaan dan koleksi film eksklusif Amazon.\n• Private Akun, Bisa All Device\n• Full Garansi 1 Bulan\n• Ada Kendala ? Segera Hubungi Admin !"
    },
 
+  {
+    id:"dramabox", name:"Dramabox", category:"Aplikasi Premium", price:13000, 
+    // Edit daftar variasi produk ini sesuai kebutuhan.
+    variants:[
+      { id:"paket-1", name:"Paket 1", price:15000, stock:10, xofCode:"dramabox", type:"Private", warranty:"Full Garansi" }
+    ],
+    icon:"spark", img:"assets/dramabox.png",
+    shortDesc:"Sharing Akun, 1 Bulan, Login 1 Device, Bergaransi.",
+ longDesc:"Nikmati DramaBox Premium selama 1 bulan untuk akses berbagai drama pilihan.\n• Sharing Akun 1 Bulan\n• Login Maksimal 1 Device\n• Bergaransi\n• Ada Kendala? Segera Hubungi Admin!" 
+  },  
+
+  {
+    id:"wink", name:"Wink Pro", category:"Aplikasi Premium", price:10000, 
+    // Edit daftar variasi produk ini sesuai kebutuhan.
+    variants:[
+      { id:"paket-1", name:"Paket 1", price:15000, stock:10, xofCode:"wink", type:"Private", warranty:"Full Garansi" }
+    ],
+    icon:"spark", img:"assets/wink.png",
+    shortDesc:"Private Akun, 7 Hari, Full Garansi, Android Only.",
+longDesc:"Nikmati Wink Premium Private selama 7 hari dengan akses fitur premium.\n• Private Akun 7 Hari\n• Full Garansi\n• Khusus Android (Android Only)\n• Ada Kendala? Segera Hubungi Admin!"
+  },  
+
+  {
+    id:"vpn", name:"Vpn Pro", category:"Aplikasi Premium", price:10000, 
+    // Edit daftar variasi produk ini sesuai kebutuhan.
+    variants:[
+      { id:"paket-1", name:"HMA VPN", price:15000, stock:10, xofCode:"hmavpn", type:"Private", warranty:"1 Bulan" },
+      { id:"paket-1", name:"EXPRESS VPN", price:8000, stock:10, xofCode:"expressvpn", type:"Private", warranty:"3 Hari" }
+    ],
+    icon:"spark", img:"assets/vpn.png",
+shortDesc:"Private Akun, Paket Pro, Full Garansi.",
+longDesc:"Nikmati VPN Pro Private dengan akses fitur premium untuk koneksi yang lebih optimal.\n• Private Akun\n• Paket Pro\n• Full Garansi\n• Ada Kendala? Segera Hubungi Admin!"
+    },  
+
    {
     id:"canva", name:"Canva Pro", category:"Aplikasi Premium", price:10000, 
     // Edit daftar variasi produk ini sesuai kebutuhan.
