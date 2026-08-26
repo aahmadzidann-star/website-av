@@ -83,14 +83,25 @@ const PRODUCTS = [
    },
 
   {
+    id:"viu7b", name:"Viu Premium", category:"Aplikasi Premium", price:13000, 
+    // Edit daftar variasi produk ini sesuai kebutuhan.
+    variants:[
+      { id:"paket-1", name:"Paket 1", price:13000, stock:10, xofCode:"viu7b", type:"Private", warranty:"Full Garansi" }
+    ],
+    icon:"spark", img:"assets/viu.png",
+    shortDesc:"Private Akun, Paket Premium, Full Garansi, Support All Device.",
+longDesc:"Nikmati VIU Private dengan Paket Premium untuk pengalaman streaming terbaik.\n• Private Akun\n• Paket Premium\n• Full Garansi\n• Support All Device\n• Ada Kendala? Segera Hubungi Admin!"
+   },
+
+  {
     id:"bstation", name:"Bstation Premium", category:"Aplikasi Premium", price:15000, 
     // Edit daftar variasi produk ini sesuai kebutuhan.
     variants:[
       { id:"paket-1", name:"3 Bulan", price:15000, stock:10, xofCode:"bstation3b", type:"Sharing", warranty:"Full Garansi" },
-      { id:"paket-1", name:"1 Tahun", price:15000, stock:10, xofCode:"bstation1t", type:"Sharing", warranty:"Full Garansi" },
-      { id:"paket-1", name:"1 Bulan", price:15000, stock:10, xofCode:"bstationpriv", type:"Private", warranty:"Full Garansi" }
+      { id:"paket-1", name:"1 Tahun", price:20000, stock:10, xofCode:"bstation1t", type:"Sharing", warranty:"Full Garansi" },
+      { id:"paket-1", name:"1 Bulan", price:40000, stock:10, xofCode:"bstationpriv", type:"Private", warranty:"Full Garansi" }
     ],
-    icon:"spark", img:"assets/am.png",
+    icon:"spark", img:"assets/bstation.png",
     shortDesc:"Paket Premium, Akun Seller, Full Garansi.",
     longDesc:"Nikmati Bstation Premium dengan akses lengkap untuk pengalaman streaming terbaik.\n• Tersedia Sharing & Private\n• Paket Premium\n• Bergaransi\n• Support Semua Device\n• Ada Kendala? Segera Hubungi Admin!"
    },
