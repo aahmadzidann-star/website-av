@@ -24,6 +24,18 @@ const PRODUCTS = [
     longDesc:"Tonton ribuan film dan serial eksklusif berkualitas HD tanpa batas.\n• 4K UHD, Support All Device\n• Private Profile (1 Profile 1 User)\n• Full Garansi 1 Bulan\n• Ada Kendala ? Segera Hubungi Admin !"
   },
 
+    {
+    id:"capcut", name:"Capcut Pro", category:"Aplikasi Premium", price:13000, 
+    // Edit daftar variasi produk ini sesuai kebutuhan.
+    variants:[
+      { id:"paket-1", name:"7 Hari", price:13000, stock:10, xofCode:"cc35d", type:"Private", warranty:"Full Garansi" },
+      { id:"paket-2", name:"1 Bulan", price:35000, stock:10, xofCode:"cc7d", type:"Private", warranty:"Full Garansi" }
+    ],
+    icon:"streaming", img:"assets/capcut.png",
+    shortDesc:"Private Akun, Akun Seller, Full Garansi.",
+    longDesc:"Edit video layaknya profesional dengan akses penuh ke semua efek dan fitur berbayar.\n• Paket Pro Full Garansi \n• Akun Dari Seller, Tinggal Login\n• Ada Kendala ? Segera Hubungi Admin !"
+  },
+
   {
     id:"spotify", name:"Spotify Premium", category:"Aplikasi Premium", price:23000, 
     // Edit daftar variasi produk ini sesuai kebutuhan.
@@ -58,18 +70,6 @@ const PRODUCTS = [
     shortDesc:"Sharing Akun, 1 Bulan, Akun Seller, Full Garansi.",
     longDesc:"Akses ke katalog Disney, Marvel, Star Wars, Pixar, sampai tayangan olahraga pilihan. Satu akun, hiburan lengkap untuk seluruh keluarga.\n• Sharing Akun\n• Premium, Support All Device\n• Ada Kendala ? Segera Hubungi Admin !"
    },
-
-  {
-    id:"capcut", name:"Capcut Pro", category:"Aplikasi Premium", price:13000, 
-    // Edit daftar variasi produk ini sesuai kebutuhan.
-    variants:[
-      { id:"paket-1", name:"7 Hari", price:13000, stock:10, xofCode:"cc35d", type:"Private", warranty:"Full Garansi" },
-      { id:"paket-2", name:"1 Bulan", price:35000, stock:10, xofCode:"cc7d", type:"Private", warranty:"Full Garansi" }
-    ],
-    icon:"streaming", img:"assets/capcut.png",
-    shortDesc:"Private Akun, Akun Seller, Full Garansi.",
-    longDesc:"Edit video layaknya profesional dengan akses penuh ke semua efek dan fitur berbayar.\n• Paket Pro Full Garansi \n• Akun Dari Seller, Tinggal Login\n• Ada Kendala ? Segera Hubungi Admin !"
-  },
 
   {
     id:"alightmotion", name:"Alight Motion", category:"Aplikasi Premium", price:13000, 
