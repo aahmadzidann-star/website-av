@@ -72,6 +72,28 @@ const PRODUCTS = [
   },
 
   {
+    id:"alightmotion", name:"Alight Motion", category:"Aplikasi Premium", price:13000, 
+    // Edit daftar variasi produk ini sesuai kebutuhan.
+    variants:[
+      { id:"paket-1", name:"Paket 1", price:13000, stock:10, xofCode:"alightmotion", type:"Private", warranty:"Full Garansi" }
+    ],
+    icon:"spark", img:"assets/am.png",
+    shortDesc:"Private Akun, 1 Tahun, Akun Seller, Full Garansi.",
+    longDesc:"Nikmati Alight Motion Private dengan akses premium hingga 1 tahun.\n• Private 1 Tahun\n• Garansi 11 Bulan (Selama Metode Bisa)\n• Khusus Android (Tidak Bisa di iPhone/iOS)\n• Ada Akses\n• Ada Kendala? Segera Hubungi Admin!"
+   },
+
+  {
+    id:"bstation", name:"Bstation Premium", category:"Aplikasi Premium", price:15000, 
+    // Edit daftar variasi produk ini sesuai kebutuhan.
+    variants:[
+      { id:"paket-1", name:"Paket 1", price:15000, stock:10, xofCode:"bstation3b", type:"Private", warranty:"Full Garansi" }
+    ],
+    icon:"spark", img:"assets/am.png",
+    shortDesc:"Private Akun, 1 Tahun, Akun Seller, Full Garansi.",
+    longDesc:"Nikmati Alight Motion Private dengan akses premium hingga 1 tahun.\n• Private 1 Tahun\n• Garansi 11 Bulan (Selama Metode Bisa)\n• Khusus Android (Tidak Bisa di iPhone/iOS)\n• Ada Akses\n• Ada Kendala? Segera Hubungi Admin!"
+   },
+
+  {
     id:"prime", name:"Prime Video", category:"Aplikasi Premium", price:13000, 
     // Edit daftar variasi produk ini sesuai kebutuhan.
     variants:[
