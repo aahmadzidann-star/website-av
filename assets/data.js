@@ -25,6 +25,18 @@ const PRODUCTS = [
   },
 
     {
+    id:"imei1", name:"Unblock IMEI", category:"Unblock IMEI", price:125000, 
+    // Edit daftar variasi produk ini sesuai kebutuhan.
+    variants:[
+      { id:"paket-1", name:"1 Bulan", price:125000, stock:10, type:"Proses Fast", warranty:"Full Garansi" },
+      { id:"paket-2", name:"3 Bulan", price:150000, stock:10, type:"Proses Slow", warranty:"Full Garansi" }
+    ],
+    icon:"unlock", img:"assets/imei.png",
+    shortDesc:"Layanan Unblock IMEI iPhone, Full Garansi.",
+    longDesc:"Layanan unblock IMEI untuk iPhone yang terblokir/blacklist, dengan masa garansi full. Proses dibantu penuh oleh admin, tinggal kirim data unit kamu."
+  },
+
+    {
     id:"capcut", name:"Capcut Pro", category:"Aplikasi Premium", price:13000, 
     // Edit daftar variasi produk ini sesuai kebutuhan.
     variants:[
@@ -172,18 +184,6 @@ longDesc:"Nikmati VPN Pro Private dengan akses fitur premium untuk koneksi yang 
     icon:"spark", img:"assets/vidio.png",
     shortDesc:"Private Akun, 1 Bulan, Full Garansi.",
     longDesc:"Pusat tayangan olahraga terlengkap, sinetron favorit, dan serial orisinal lokal eksklusif tanpa jeda iklan.\n• Mobile = Hanya Bisa di HP/TAB\n• All Device = Support Semua Perangkat\n• Paket Platinum\n• Full Garansi 1 Bulan\n• Ada Kendala ? Segera Hubungi Admin !"
-  },
-
-  {
-    id:"imei1", name:"Unblock IMEI", category:"Unblock IMEI", price:125000, 
-    // Edit daftar variasi produk ini sesuai kebutuhan.
-    variants:[
-      { id:"paket-1", name:"1 Bulan", price:125000, stock:10, type:"Proses Fast", warranty:"Full Garansi" },
-      { id:"paket-2", name:"3 Bulan", price:150000, stock:10, type:"Proses Slow", warranty:"Full Garansi" }
-    ],
-    icon:"unlock", img:"assets/imei.png",
-    shortDesc:"Layanan Unblock IMEI iPhone, Full Garansi.",
-    longDesc:"Layanan unblock IMEI untuk iPhone yang terblokir/blacklist, dengan masa garansi full. Proses dibantu penuh oleh admin, tinggal kirim data unit kamu."
   },
 
   {
