@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0E1B4D">
+<title>Pembayaran — AV OFFICIAL STORE</title>
+<link rel="icon" type="image/png" href="assets/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+<style>
+  .payment-page{padding:18px 20px 46px;}
+  .pay-hero{
+    background:linear-gradient(145deg,#0e1b4d 0%,#312e81 60%,#6d28d9 100%);
+    color:#fff;border-radius:26px;padding:22px;position:relative;overflow:hidden;
+    box-shadow:0 16px 36px rgba(76,29,149,.2);margin-bottom:18px;
+  }
+  .pay-hero::after{
+    content:"";position:absolute;width:170px;height:170px;border-radius:50%;
+    background:rgba(127,255,212,.13);right:-65px;top:-70px;
+  }
+  .pay-hero-badge{display:inline-flex;align-items:center;gap:7px;padding:7px 10px;border-radius:999px;background:rgba(255,255,255,.11);font-size:10.5px;font-weight:700;letter-spacing:.3px;margin-bottom:13px;}
+  .pay-hero-badge i{width:7px;height:7px;border-radius:50%;background:#7fffd4;box-shadow:0 0 0 5px rgba(127,255,212,.12);}
+  .pay-hero h3{font-size:22px;margin:0 0 7px;position:relative;z-index:1;}
+  .pay-hero p{font-size:12px;line-height:1.6;color:rgba(255,255,255,.72);margin:0;max-width:300px;position:relative;z-index:1;}
+
+  .pay-title{font-family:'Sora',sans-serif;font-size:13px;font-weight:800;margin:22px 2px 11px;color:var(--navy);}
+  .payment-methods{display:flex;flex-direction:column;gap:10px;}
+  .method-card{
+    background:#fff;border:1px solid var(--border);border-radius:18px;overflow:hidden;
+    box-shadow:var(--shadow-sm);transition:.2s ease;
+  }
+  .method-card.active{border-color:#8b5cf6;box-shadow:0 10px 26px rgba(109,40,217,.13);}
+  .method-head{display:flex;align-items:center;gap:12px;width:100%;padding:15px;text-align:left;color:var(--navy);}
+  .method-logo{
+    width:42px;height:42px;border-radius:13px;display:flex;align-items:center;justify-content:center;
+    font-family:'Sora',sans-serif;font-size:12px;font-weight:800;flex:0 0 auto;background:#f3f0ff;color:#6d28d9;
+  }
+  .method-logo.qris{background:#eef2ff;color:#111827;font-size:11px;}
+  .method-logo.dana{background:#eaf6ff;color:#128be3;}
+  .method-logo.seabank{background:#fff1ed;color:#f05a28;}
+  .method-logo.spay{background:#fff0ec;color:#ee4d2d;}
+  .method-logo.bca{background:#eaf5ff;color:#0b74b8;}
+  .method-info{min-width:0;flex:1;}
+  .method-name{font-family:'Sora',sans-serif;font-size:13px;font-weight:800;}
+  .method-sub{font-size:11px;color:var(--muted);margin-top:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+  .method-chevron{width:28px;height:28px;border-radius:9px;background:#f8f7fc;display:flex;align-items:center;justify-content:center;transition:transform .2s ease;}
+  .method-card.active .method-chevron{transform:rotate(180deg);}
+  .method-body{display:none;padding:0 15px 15px;}
+  .method-card.active .method-body{display:block;animation:methodOpen .2s ease;}
+  @keyframes methodOpen{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:translateY(0)}}
+
+  .account-box{border:1px dashed #d9d2ef;background:#faf9fe;border-radius:14px;padding:13px;}
+  .account-label{font-size:10.5px;color:var(--muted);margin-bottom:5px;}
+  .account-line{display:flex;align-items:center;gap:10px;}
+  .account-number{font-family:'Sora',sans-serif;font-size:15px;font-weight:800;letter-spacing:.25px;word-break:break-all;flex:1;}
+  .copy-btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:9px 11px;border-radius:10px;background:var(--purple);color:#fff;font-size:11px;font-weight:800;box-shadow:0 6px 14px rgba(109,40,217,.2);}
+  .copy-btn:active{transform:scale(.97);}
+  .account-owner{font-size:10.5px;color:var(--muted);margin-top:7px;}
+
+  .qris-wrap{text-align:center;padding:4px 0 2px;}
+  .qris-frame{width:min(270px,100%);aspect-ratio:1/1;margin:0 auto 12px;border-radius:18px;background:#fff;border:1px solid var(--border);padding:12px;display:flex;align-items:center;justify-content:center;overflow:hidden;box-shadow:0 8px 24px rgba(14,27,77,.08);}
+  .qris-frame img{width:100%;height:100%;object-fit:contain;border-radius:10px;}
+  .qris-fallback{display:none;flex-direction:column;align-items:center;justify-content:center;gap:8px;color:var(--muted);padding:20px;font-size:11px;line-height:1.45;}
+  .qris-fallback strong{color:var(--navy);font-family:'Sora',sans-serif;font-size:13px;}
+  .qris-note{font-size:11px;color:var(--muted);line-height:1.55;}
+
+  .qris-download{display:inline-flex;align-items:center;justify-content:center;gap:8px;margin-top:10px;padding:11px 14px;border-radius:12px;background:#0e1b4d;color:#fff;font-size:11.5px;font-weight:800;box-shadow:0 7px 18px rgba(14,27,77,.16);}
+  .qris-download:active{transform:scale(.98);}
+
+  .pay-note{display:flex;gap:10px;background:#fff;border:1px solid var(--border);border-radius:16px;padding:14px;margin-top:16px;font-size:11px;line-height:1.55;color:var(--muted);}
+  .pay-note svg{flex:0 0 auto;color:var(--purple);margin-top:1px;}
+  .confirm-btn{display:flex;align-items:center;justify-content:center;gap:9px;width:100%;margin-top:14px;padding:14px 16px;border-radius:15px;background:linear-gradient(135deg,#6d28d9,#8b5cf6);color:#fff;font-size:13px;font-weight:800;box-shadow:0 10px 24px rgba(109,40,217,.24);}
+  .confirm-btn:active{transform:translateY(1px);}
+  .payment-toast{position:fixed;left:50%;bottom:24px;transform:translate(-50%,18px);background:#0e1b4d;color:#fff;padding:10px 14px;border-radius:12px;font-size:11.5px;font-weight:700;opacity:0;pointer-events:none;transition:.22s ease;z-index:99;box-shadow:0 10px 28px rgba(14,27,77,.25);white-space:nowrap;}
+  .payment-toast.show{opacity:1;transform:translate(-50%,0);}
+  @media(min-width:900px){.payment-toast{position:absolute;}}
+</style>
+</head>
+<body>
+<div class="app">
+  <section class="view active">
+    <div class="topbar">
+      <a class="icon-btn" href="index.html" aria-label="Kembali">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none"><path d="M15 6l-6 6 6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <h2>Metode Pembayaran</h2>
+      <span style="width:38px;"></span>
+    </div>
+
+    <div class="payment-page">
+      <div class="pay-hero">
+        <div class="pay-hero-badge"><i></i> Pembayaran AV Store</div>
+        <h3>Bayar lebih mudah</h3>
+        <p>Pilih metode pembayaran, salin nomor tujuan dengan satu tap, lalu kirim bukti pembayaran ke admin.</p>
+      </div>
+
+      <div class="pay-title">Pilih metode pembayaran</div>
+      <div class="payment-methods" id="payment-methods"></div>
+
+      <div class="pay-note">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.8"/><path d="M12 10v6M12 7.2v.1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        <div>Pastikan nama penerima dan nomor tujuan sudah benar sebelum transfer. Setelah membayar, simpan bukti transfer untuk konfirmasi pesanan.</div>
+      </div>
+
+      <a class="confirm-btn" href="https://wa.me/6287717164906?text=Halo%20Admin%20AV%20Store%2C%20saya%20sudah%20melakukan%20pembayaran.%20Saya%20ingin%20mengirim%20bukti%20transfer." target="_blank" rel="noopener">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M12 22c5.5 0 10-4.5 10-10S17.5 2 12 2 2 6.5 2 12c0 1.8.5 3.5 1.3 5L2 22l5.2-1.3c1.4.8 3.1 1.3 4.8 1.3z"/></svg>
+        Konfirmasi Pembayaran ke Admin
+      </a>
+    </div>
+  </section>
+  <div class="payment-toast" id="payment-toast">Berhasil disalin</div>
+</div>
+
+<script>
+/* ==========================================================
+   EDIT DATA PEMBAYARAN DI BAGIAN INI SAJA
+   - Ganti nomor "08xxxxxxxxxx" dengan nomor asli kamu.
+   - Untuk QRIS, ubah path gambar pada bagian QRIS, misalnya: image: "assets/qris.png"
+   - Default QRIS sekarang memakai file: assets/qris.png
+   - Kamu bisa menghapus metode yang tidak dipakai.
+   ========================================================== */
+const PAYMENT_METHODS = [
+  {
+    id: "qris",
+    name: "TOKO_AV",
+    subtitle: "Scan dengan semua e-wallet & mobile banking",
+    type: "qris",
+    image: "assets/qris.png",
+    alt: "QRIS AV Store"
+  },
+  {
+    id: "dana",
+    name: "DANA",
+    subtitle: "Transfer ke nomor DANA",
+    type: "account",
+    logoClass: "dana",
+    number: "087717164906",
+    owner: "a.n. SUG******"
+  },
+  {
+    id: "seabank",
+    name: "SeaBank",
+    subtitle: "Transfer ke rekening SeaBank",
+    type: "account",
+    logoClass: "seabank",
+    number: "901357873940",
+    owner: "a.n. AHM** ZID**"
+  },
+  {
+    id: "spay",
+    name: "ShopeePay",
+    subtitle: "Transfer ke nomor ShopeePay",
+    type: "account",
+    logoClass: "spay",
+    number: "087717164906",
+    owner: "a.n. AHM** ZID**"
+  },
+  {
+    id: "bca",
+    name: "BCA",
+    subtitle: "Transfer ke rekening BCA",
+    type: "account",
+    logoClass: "bca",
+    number: "6872405581",
+    owner: "a.n.  AHM** ZID**"
+  }
+];
+
+const methodsEl = document.getElementById("payment-methods");
+const toastEl = document.getElementById("payment-toast");
+let toastTimer;
+
+function methodLogo(method){
+  if(method.id === "qris") return "QRIS";
+  if(method.id === "dana") return "DANA";
+  if(method.id === "seabank") return "SEA";
+  if(method.id === "spay") return "SPay";
+  if(method.id === "bca") return "BCA";
+  return "PAY";
+}
+
+function renderMethods(){
+  methodsEl.innerHTML = PAYMENT_METHODS.map((method,index)=>`
+    <div class="method-card ${index===0?'active':''}" id="method-${method.id}">
+      <button class="method-head" type="button" onclick="toggleMethod('${method.id}')" aria-expanded="${index===0?'true':'false'}">
+        <span class="method-logo ${method.logoClass || 'qris'}">${methodLogo(method)}</span>
+        <span class="method-info">
+          <span class="method-name">${method.name}</span>
+          <span class="method-sub">${method.subtitle}</span>
+        </span>
+        <span class="method-chevron">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </span>
+      </button>
+      <div class="method-body">
+        ${method.type === 'qris' ? qrisBody() : accountBody(method)}
+      </div>
+    </div>
+  `).join("");
+}
+
+function qrisBody(){
+  const qrisMethod = PAYMENT_METHODS.find(item => item.id === 'qris') || {};
+  const qrisImage = qrisMethod.image || 'assets/qris.png';
+  const qrisAlt = qrisMethod.alt || 'QRIS AV Store';
+  return `
+    <div class="qris-wrap">
+      <div class="qris-frame">
+        <img src="${qrisImage}" alt="${qrisAlt}" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="qris-fallback">
+          <svg width="42" height="42" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="7" height="7" rx="1" stroke="currentColor" stroke-width="1.7"/><rect x="14" y="3" width="7" height="7" rx="1" stroke="currentColor" stroke-width="1.7"/><rect x="3" y="14" width="7" height="7" rx="1" stroke="currentColor" stroke-width="1.7"/><path d="M14 14h3v3h-3zM18 18h3v3h-3zM18 14h3M14 18v3" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>
+          <strong>QRIS belum dipasang</strong>
+          Upload QRIS asli kamu sebagai <b>assets/qris.png</b>
+        </div>
+      </div>
+      <div class="qris-note">Buka aplikasi e-wallet atau mobile banking, pilih menu scan QR, lalu scan QRIS di atas.</div>
+      <a class="qris-download" href="${qrisImage}" download="QRIS-AV-Store.png">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M12 3v12m0 0l-4-4m4 4l4-4M5 20h14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Unduh QRIS
+      </a>
+    </div>`;
+}
+
+function accountBody(method){
+  return `
+    <div class="account-box">
+      <div class="account-label">Nomor tujuan</div>
+      <div class="account-line">
+        <div class="account-number">${method.number}</div>
+        <button class="copy-btn" type="button" onclick="copyPayment('${method.id}', event)">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none"><rect x="8" y="8" width="11" height="11" rx="2" stroke="currentColor" stroke-width="2"/><path d="M16 8V6a2 2 0 00-2-2H6a2 2 0 00-2 2v8a2 2 0 002 2h2" stroke="currentColor" stroke-width="2"/></svg>
+          Salin
+        </button>
+      </div>
+      <div class="account-owner">${method.owner}</div>
+    </div>`;
+}
+
+function toggleMethod(id){
+  document.querySelectorAll('.method-card').forEach(card=>{
+    const active = card.id === `method-${id}` ? !card.classList.contains('active') : false;
+    card.classList.toggle('active', active);
+    const head = card.querySelector('.method-head');
+    if(head) head.setAttribute('aria-expanded', String(active));
+  });
+}
+
+async function copyPayment(id,event){
+  event.stopPropagation();
+  const method = PAYMENT_METHODS.find(item=>item.id===id);
+  if(!method || !method.number) return;
+  try{
+    await navigator.clipboard.writeText(method.number);
+  }catch(err){
+    const temp = document.createElement('textarea');
+    temp.value = method.number;
+    temp.style.position = 'fixed';
+    temp.style.opacity = '0';
+    document.body.appendChild(temp);
+    temp.select();
+    document.execCommand('copy');
+    temp.remove();
+  }
+  showPaymentToast(`${method.name} berhasil disalin`);
+}
+
+function showPaymentToast(message){
+  clearTimeout(toastTimer);
+  toastEl.textContent = message;
+  toastEl.classList.add('show');
+  toastTimer = setTimeout(()=>toastEl.classList.remove('show'),1800);
+}
+
+renderMethods();
+</script>
+<script type="module" src="assets/analytics.js"></script>
+</body>
+</html>
