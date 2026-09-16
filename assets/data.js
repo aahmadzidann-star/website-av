@@ -145,8 +145,8 @@ longDesc:"Nikmati VIU Private dengan Paket Premium untuk pengalaman streaming te
     id:"iqiyi", name:"Iqiyi", category:"Aplikasi Premium", price:15000, 
     // Edit daftar variasi produk ini sesuai kebutuhan.
     variants:[
-      { id:"paket-1", name:"Sharing Standar", price:15000, stock:10, xofCode:"shar1", type:"Sharing", warranty:"1 Bulan" }
-      { id:"paket-2", name:"Sharing Premium", price:18000, stock:10, xofCode:"shar2", type:"Sharing", warranty:"1 Bulan" }
+      { id:"paket-1", name:"Sharing Standar", price:15000, stock:10, xofCode:"shar1", type:"Sharing", warranty:"1 Bulan" },
+      { id:"paket-2", name:"Sharing Premium", price:18000, stock:10, xofCode:"shar2", type:"Sharing", warranty:"1 Bulan" },
       { id:"paket-3", name:"Private Premium", price:35000, stock:10, xofCode:"shar3", type:"Private", warranty:"1 Bulan" }
     ],
     icon:"spark", img:"assets/iqiyi.png",
