@@ -94,6 +94,18 @@ const PRODUCTS = [
     longDesc:"Nikmati Alight Motion Private dengan akses premium hingga 1 tahun.\n• Private 1 Tahun\n• Garansi 11 Bulan (Selama Metode Bisa)\n• Khusus Android (Tidak Bisa di iPhone/iOS)\n• Ada Akses\n• Ada Kendala? Segera Hubungi Admin!"
    },
 
+   {
+    id:"zoom", name:"Zoom Premium", category:"Aplikasi Premium", price:10000, 
+    // Edit daftar variasi produk ini sesuai kebutuhan.
+    variants:[
+      { id:"paket-1", name:"7 Hari", price:10000, stock:10, xofCode:"zoom7d", type:"Private", warranty:"Full Garansi" },
+      { id:"paket-2", name:"14 Hari", price:15000, stock:10, xofCode:"zoom14d", type:"Private", warranty:"Full Garansi" }
+    ],
+    icon:"spark", img:"assets/zoom.png",
+    shortDesc:"Private Akun, Paket Premium, 100 Peserta, Full Garansi.",
+longDesc:"Nikmati Zoom Premium untuk meeting dan webinar tanpa batas.\n• Private Akun\n• Paket Premium\n• Maks. 100 Peserta\n• Full Garansi\n• Support All Device\n• Ada Kendala? Segera Hubungi Admin!" 
+   },
+
   {
     id:"viu7b", name:"Viu Premium", category:"Aplikasi Premium", price:10000, 
     // Edit daftar variasi produk ini sesuai kebutuhan.
@@ -110,8 +122,8 @@ longDesc:"Nikmati VIU Private dengan Paket Premium untuk pengalaman streaming te
     // Edit daftar variasi produk ini sesuai kebutuhan.
     variants:[
       { id:"paket-1", name:"3 Bulan", price:15000, stock:10, xofCode:"bstation3b", type:"Sharing", warranty:"Full Garansi" },
-      { id:"paket-1", name:"1 Tahun", price:20000, stock:10, xofCode:"bstation1t", type:"Sharing", warranty:"Full Garansi" },
-      { id:"paket-1", name:"1 Bulan", price:40000, stock:10, xofCode:"bstationpriv", type:"Private", warranty:"Full Garansi" }
+      { id:"paket-2", name:"1 Tahun", price:20000, stock:10, xofCode:"bstation1t", type:"Sharing", warranty:"Full Garansi" },
+      { id:"paket-3", name:"1 Bulan", price:40000, stock:10, xofCode:"bstationpriv", type:"Private", warranty:"Full Garansi" }
     ],
     icon:"spark", img:"assets/bstation.png",
     shortDesc:"Paket Premium, Akun Seller, Full Garansi.",
@@ -156,7 +168,7 @@ longDesc:"Nikmati Wink Premium Private selama 7 hari dengan akses fitur premium.
     // Edit daftar variasi produk ini sesuai kebutuhan.
     variants:[
       { id:"paket-1", name:"HMA VPN", price:15000, stock:10, xofCode:"hmavpn", type:"Private", warranty:"1 Bulan" },
-      { id:"paket-1", name:"EXPRESS VPN", price:8000, stock:10, xofCode:"expressvpn", type:"Private", warranty:"3 Hari" }
+      { id:"paket-2", name:"EXPRESS VPN", price:8000, stock:10, xofCode:"expressvpn", type:"Private", warranty:"3 Hari" }
     ],
     icon:"spark", img:"assets/vpn.png",
 shortDesc:"Private Akun, Paket Pro, Full Garansi.",
