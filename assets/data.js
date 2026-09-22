@@ -17,7 +17,9 @@ const PRODUCTS = [
     id:"netflix", name:"Netflix Premium", category:"Aplikasi Premium", price:30000,
     // Edit daftar variasi produk ini sesuai kebutuhan.
     variants:[
-      { id:"paket-1", name:"1 Bulan", price:30000, stock:10, xofCode:"net1u", type:"Private", warranty:"Full Garansi" }
+      { id:"paket-1", name:"1 Bulan", price:30000, stock:10, xofCode:"net1u", type:"Private", warranty:"Full Garansi" },
+      { id:"paket-2", name:"2 Bulan", price:60000, stock:10, xofCode:"net1u", type:"Private", warranty:"Full Garansi" }
+      { id:"paket-3", name:"3 Bulan", price:90000, stock:10, xofCode:"net1u", type:"Private", warranty:"Full Garansi" }
     ],
     icon:"streaming", img:"assets/netflix.png",
     shortDesc:"Private Profil, 1 Bulan, 4K UHD, Full Garansi.",
@@ -108,10 +110,10 @@ longDesc:"Nikmati Zoom Premium untuk meeting dan webinar tanpa batas.\n• Priva
    },
 
   {
-    id:"viu7b", name:"Viu Premium", category:"Aplikasi Premium", price:10000, 
+    id:"viu7b", name:"Viu Premium", category:"Aplikasi Premium", price:5000, 
     // Edit daftar variasi produk ini sesuai kebutuhan.
     variants:[
-      { id:"paket-1", name:"Paket 1", price:10000, stock:10, xofCode:"viu7b", type:"Private", warranty:"Full Garansi" }
+      { id:"paket-1", name:"5 Bulan", price:5000, stock:10, xofCode:"viu7b", type:"Private", warranty:"Full Garansi" }
     ],
     icon:"spark", img:"assets/viu.png",
     shortDesc:"Private Akun, Paket Premium, Full Garansi, Support All Device.",
@@ -170,7 +172,7 @@ longDesc:"Nikmati iQIYI Premium selama 1 bulan untuk akses berbagai drama, film,
     id:"wink", name:"Wink Pro", category:"Aplikasi Premium", price:10000, 
     // Edit daftar variasi produk ini sesuai kebutuhan.
     variants:[
-      { id:"paket-1", name:"Paket 1", price:15000, stock:10, xofCode:"wink", type:"Private", warranty:"Full Garansi" }
+      { id:"paket-1", name:"7 Hari", price:10000, stock:10, xofCode:"wink", type:"Private", warranty:"Full Garansi" }
     ],
     icon:"spark", img:"assets/wink.png",
     shortDesc:"Private Akun, 7 Hari, Full Garansi, Android Only.",
@@ -178,10 +180,10 @@ longDesc:"Nikmati Wink Premium Private selama 7 hari dengan akses fitur premium.
   },  
 
   {
-    id:"vpn", name:"Vpn Pro", category:"Aplikasi Premium", price:10000, 
+    id:"vpn", name:"Vpn Pro", category:"Aplikasi Premium", price:8000, 
     // Edit daftar variasi produk ini sesuai kebutuhan.
     variants:[
-      { id:"paket-1", name:"HMA VPN", price:15000, stock:10, xofCode:"hmavpn", type:"Private", warranty:"1 Bulan" },
+      { id:"paket-1", name:"HMA VPN", price:13000, stock:10, xofCode:"hmavpn", type:"Private", warranty:"1 Bulan" },
       { id:"paket-2", name:"EXPRESS VPN", price:8000, stock:10, xofCode:"expressvpn", type:"Private", warranty:"3 Hari" }
     ],
     icon:"spark", img:"assets/vpn.png",
@@ -205,8 +207,8 @@ longDesc:"Nikmati VPN Pro Private dengan akses fitur premium untuk koneksi yang 
     id:"vidio", name:"Vidio Platinum", category:"Aplikasi Premium", price:30000, 
     // Edit daftar variasi produk ini sesuai kebutuhan.
     variants:[
-      { id:"paket-1", name:"Mobile", price:28000, stock:10, xofCode:"vidio", type:"Private", warranty:"Full Garansi" },
-      { id:"paket-2", name:"All Device", price:40000, stock:10, xofCode:"vidioall", type:"Private", warranty:"Full Garansi" }
+      { id:"paket-1", name:"Mobile", price:30000, stock:10, xofCode:"vidio", type:"Private", warranty:"Full Garansi" },
+      { id:"paket-2", name:"All Device", price:45000, stock:10, xofCode:"vidioall", type:"Private", warranty:"Full Garansi" }
     ],
     icon:"spark", img:"assets/vidio.png",
     shortDesc:"Private Akun, 1 Bulan, Full Garansi.",
