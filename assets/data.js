@@ -41,7 +41,8 @@ const PRODUCTS = [
     // Edit daftar variasi produk ini sesuai kebutuhan.
     variants:[
       { id:"paket-1", name:"7 Hari", price:13000, stock:10, xofCode:"cc35d", type:"Private", warranty:"Full Garansi" },
-      { id:"paket-2", name:"1 Bulan", price:35000, stock:10, xofCode:"cc7d", type:"Private", warranty:"Full Garansi" }
+      { id:"paket-2", name:"1 Bulan", price:35000, stock:10, xofCode:"cc7d", type:"Private", warranty:"Full Garansi" },
+      { id:"paket-3", name:"6 Bulan", price:160000, stock:10, xofCode:"cc6b", type:"Private", warranty:"Full Garansi" }
     ],
     icon:"streaming", img:"assets/capcut.png",
     shortDesc:"Private Akun, Akun Seller, Full Garansi.",
@@ -84,10 +85,10 @@ const PRODUCTS = [
    },
 
   {
-    id:"alightmotion", name:"Alight Motion", category:"Aplikasi Premium", price:13000, 
+    id:"alightmotion", name:"Alight Motion", category:"Aplikasi Premium", price:10000, 
     // Edit daftar variasi produk ini sesuai kebutuhan.
     variants:[
-      { id:"paket-1", name:"Paket 1", price:13000, stock:10, xofCode:"alightmotion", type:"Private", warranty:"Full Garansi" }
+      { id:"paket-1", name:"1 Tahun", price:10000, stock:10, xofCode:"alightmotion", type:"Private", warranty:"Full Garansi" }
     ],
     icon:"spark", img:"assets/am.png",
     shortDesc:"Private Akun, 1 Tahun, Akun Seller, Full Garansi.",
@@ -131,10 +132,10 @@ longDesc:"Nikmati VIU Private dengan Paket Premium untuk pengalaman streaming te
    },
 
   {
-    id:"prime", name:"Prime Video", category:"Aplikasi Premium", price:15000, 
+    id:"prime", name:"Amazon Prime Video", category:"Aplikasi Premium", price:15000, 
     // Edit daftar variasi produk ini sesuai kebutuhan.
     variants:[
-      { id:"paket-1", name:"Paket 1", price:15000, stock:10, xofCode:"prime", type:"Private", warranty:"Full Garansi" }
+      { id:"paket-1", name:"1 Bulan", price:15000, stock:10, xofCode:"prime", type:"Private", warranty:"Full Garansi" }
     ],
     icon:"spark", img:"assets/prime.png",
     shortDesc:"Private Akun, 1 Bulan, Akun Seller, Full Garansi.",
@@ -192,7 +193,8 @@ longDesc:"Nikmati VPN Pro Private dengan akses fitur premium untuk koneksi yang 
     id:"canva", name:"Canva Pro", category:"Aplikasi Premium", price:10000, 
     // Edit daftar variasi produk ini sesuai kebutuhan.
     variants:[
-      { id:"paket-1", name:"Paket 1", price:10000, stock:10, xofCode:"canvaedu", type:"Private", warranty:"Full Garansi" }
+      { id:"paket-1", name:"Lifetime", price:13000, stock:10, xofCode:"canvaedu", type:"Invite", warranty:"Garansi 5B" },
+      { id:"paket-2", name:"1 Bulan", price:10000, stock:10, xofCode:"canvaedu", type:"Head", warranty:"Full Garansi" }
     ],
     icon:"spark", img:"assets/canva.png",
     shortDesc:"Via Invite, Lifetime, Paket Pro, Garansi.",
