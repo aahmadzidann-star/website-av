@@ -18,7 +18,7 @@ const PRODUCTS = [
     // Edit daftar variasi produk ini sesuai kebutuhan.
     variants:[
       { id:"paket-1", name:"1 Bulan", price:30000, stock:10, xofCode:"net1u", type:"Private", warranty:"Full Garansi" },
-      { id:"paket-2", name:"2 Bulan", price:60000, stock:10, xofCode:"net1u", type:"Private", warranty:"Full Garansi" }
+      { id:"paket-2", name:"2 Bulan", price:60000, stock:10, xofCode:"net1u", type:"Private", warranty:"Full Garansi" },
       { id:"paket-3", name:"3 Bulan", price:90000, stock:10, xofCode:"net1u", type:"Private", warranty:"Full Garansi" }
     ],
     icon:"streaming", img:"assets/netflix.png",
