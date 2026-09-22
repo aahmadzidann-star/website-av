@@ -156,10 +156,10 @@ longDesc:"Nikmati iQIYI Premium selama 1 bulan untuk akses berbagai drama, film,
   },  
 
   {
-    id:"dramabox", name:"Dramabox", category:"Aplikasi Premium", price:13000, 
+    id:"dramabox", name:"Dramabox", category:"Aplikasi Premium", price:15000, 
     // Edit daftar variasi produk ini sesuai kebutuhan.
     variants:[
-      { id:"paket-1", name:"Paket 1", price:15000, stock:10, xofCode:"dramabox", type:"Private", warranty:"Full Garansi" }
+      { id:"paket-1", name:"1 Bulan", price:15000, stock:10, xofCode:"dramabox", type:"Sharing", warranty:"Full Garansi" }
     ],
     icon:"spark", img:"assets/dramabox.png",
     shortDesc:"Sharing Akun, 1 Bulan, Login 1 Device, Bergaransi.",
