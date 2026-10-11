@@ -256,9 +256,9 @@ longDesc:"Nikmati VPN Pro Private dengan akses fitur premium untuk koneksi yang 
       { id:"paket-1", name:"Sharing", price:15000, stock:10, xofCode:"wetvshar", type:"Premium", warranty:"Full Garansi" },
       { id:"paket-2", name:"Private", price:30000, stock:10, xofCode:"wetvpriv", type:"Premium", warranty:"Full Garansi" }
     ],
-    icon:"spark", img:"assets/youku.png",
-shortDesc:"Youku VIP 1B & 3B Sharing, Full Garansi.",
-longDesc:"Nikmati akses Youku VIP dengan paket 1 Bulan & 3 Bulan.\n• Sharing VIP, Full Garansi\n• Login maksimal 1 device\n• Support All Device, praktis digunakan\n• Harga terjangkau, stok terbatas\n• Ada kendala? Segera hubungi Admin!"
+    icon:"spark", img:"assets/wetv.png",
+shortDesc:"WeTV Premium 1 Bulan, Sharing & Private, Full Garansi.",
+longDesc:"Nikmati akses WeTV Premium eksklusif selama 1 Bulan.\n• Tersedia pilihan Sharing & Private\n• Support All Device, bisa nonton dimana saja\n• Full Garansi dari Seller\n• Tinggal login tanpa ribet\n• Ada kendala? Segera hubungi Admin!"
  },  
 
   {
@@ -268,9 +268,10 @@ longDesc:"Nikmati akses Youku VIP dengan paket 1 Bulan & 3 Bulan.\n• Sharing V
       { id:"paket-1", name:"1 Bulan", price:10000, stock:10, xofCode:"youku1b", type:"Sharing", warranty:"Full Garansi" },
       { id:"paket-2", name:"3 Bulan", price:20000, stock:10, xofCode:"youku3b", type:"Sharing", warranty:"Full Garansi" }
     ],
-    icon:"spark", img:"assets/wetv.png",
-shortDesc:"WeTV Premium 1 Bulan, Sharing & Private, Full Garansi.",
-longDesc:"Nikmati akses WeTV Premium eksklusif selama 1 Bulan.\n• Tersedia pilihan Sharing & Private\n• Support All Device, bisa nonton dimana saja\n• Full Garansi dari Seller\n• Tinggal login tanpa ribet\n• Ada kendala? Segera hubungi Admin!"
+    icon:"spark", img:"assets/youku.png",
+shortDesc:"Youku VIP 1B & 3B Sharing, Full Garansi.",
+longDesc:"Nikmati akses Youku VIP dengan paket 1 Bulan & 3 Bulan.\n• Sharing VIP, Full Garansi\n• Login maksimal 1 device\n• Support All Device, praktis digunakan\n• Harga terjangkau, stok terbatas\n• Ada kendala? Segera hubungi Admin!"
+
   },  
 
   {
