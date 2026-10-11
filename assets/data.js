@@ -99,6 +99,18 @@ const PRODUCTS = [
 },
 
   {
+    id:"gemini", name:"Lok-Lok Vip", category:"Aplikasi Premium", price:25000, 
+    // Edit daftar variasi produk ini sesuai kebutuhan.
+    variants:[
+      { id:"paket-1", name:"Basic 1B", price:25000, stock:10, xofCode:"basic1b", type:"Sharing", warranty:"Full Garansi" },
+      { id:"paket-2", name:"Standar 1B", price:30000, stock:10, xofCode:"standar1b", type:"Sharing", warranty:"Full Garansi" }
+    ],
+    icon:"streaming", img:"assets/loklok.png",
+   shortDesc:"Loklok Basic & Standar 1 Bulan, Full Garansi.",
+    longDesc:"Nikmati hiburan seru di Loklok dengan paket sharing 1 Bulan.\n• Paket BASIC 1B (Sharing, Full Garansi)\n• Paket STANDAR 1B (Sharing, Full Garansi)\n• Akses ribuan film & drama terbaru\n• Kualitas HD, tinggal login\n• Harga terjangkau, stok terbatas\n• Ada kendala? Segera hubungi Admin!"
+},
+
+  {
     id:"hbo", name:"Hbo Max", category:"Aplikasi Premium", price:18000, 
     // Edit daftar variasi produk ini sesuai kebutuhan.
     variants:[
