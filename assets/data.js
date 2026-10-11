@@ -93,7 +93,7 @@ const PRODUCTS = [
       { id:"paket-1", name:"INVITE 18B", price:20000, stock:10, xofCode:"gemini18b", type:"Invite Email", warranty:"Full Garansi" },
       { id:"paket-2", name:"KODE REDEEM 18B", price:20000, stock:10, xofCode:"gemini18b", type:"Private", warranty:"Garansi Pakai" }
     ],
-    icon:"streaming", img:"assets/youtube.png",
+    icon:"streaming", img:"assets/gemini.png",
     shortDesc:"Invite Email Gemini Pro AI & Kode Redeem, Full Garansi.",
     longDesc:"Nikmati akses Gemini Pro AI dengan pilihan metode:\n• Paket INVITE 18B (via Email, Full Garansi)\n• Paket KODE REDEEM 18B (Private, Garansi Pakai)\n• Harga terjangkau, stok terbatas\n• Tinggal login/redeem tanpa ribet\n• Ada kendala? Segera hubungi Admin!"
 },
