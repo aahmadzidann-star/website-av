@@ -87,7 +87,7 @@ const PRODUCTS = [
    },
 
   {
-    id:"gemini", name:"Gemini Pro", category:"Aplikasi Premium", price:18000, 
+    id:"gemini", name:"Gemini Pro", category:"Aplikasi Premium", price:20000, 
     // Edit daftar variasi produk ini sesuai kebutuhan.
     variants:[
       { id:"paket-1", name:"INVITE 18B", price:20000, stock:10, xofCode:"gemini18b", type:"Invite Email", warranty:"Full Garansi" },
@@ -97,6 +97,17 @@ const PRODUCTS = [
     shortDesc:"Invite Email Gemini Pro AI & Kode Redeem, Full Garansi.",
     longDesc:"Nikmati akses Gemini Pro AI dengan pilihan metode:\n• Paket INVITE 18B (via Email, Full Garansi)\n• Paket KODE REDEEM 18B (Private, Garansi Pakai)\n• Harga terjangkau, stok terbatas\n• Tinggal login/redeem tanpa ribet\n• Ada kendala? Segera hubungi Admin!"
 },
+
+  {
+    id:"hbo", name:"Hbo Max", category:"Aplikasi Premium", price:18000, 
+    // Edit daftar variasi produk ini sesuai kebutuhan.
+    variants:[
+      { id:"paket-1", name:"Ultimate 1B", price:18000, stock:10, xofCode:"hbo", type:"Sharing", warranty:"Full Garansi" }
+    ],
+    icon:"spark", img:"assets/hbo.png",
+   shortDesc:"HBO Max Ultimate Sharing 1 Bulan, Full Garansi.",
+    longDesc:"Nikmati tayangan premium HBO Max dengan paket Ultimate Sharing 1 Bulan.\n• Akses ribuan film & series eksklusif\n• Kualitas HD & bebas iklan\n• Full Garansi dari Seller\n• Akun Sharing, tinggal login\n• Ada kendala? Segera hubungi Admin!"
+   },
 
   {
     id:"alightmotion", name:"Alight Motion", category:"Aplikasi Premium", price:10000, 
