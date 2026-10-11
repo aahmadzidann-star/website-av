@@ -99,7 +99,7 @@ const PRODUCTS = [
 },
 
   {
-    id:"gemini", name:"Lok-Lok Vip", category:"Aplikasi Premium", price:25000, 
+    id:"loklok", name:"Lok-Lok Vip", category:"Aplikasi Premium", price:25000, 
     // Edit daftar variasi produk ini sesuai kebutuhan.
     variants:[
       { id:"paket-1", name:"Basic 1B", price:25000, stock:10, xofCode:"basic1b", type:"Sharing", warranty:"Full Garansi" },
