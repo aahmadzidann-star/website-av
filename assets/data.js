@@ -214,6 +214,17 @@ longDesc:"Nikmati iQIYI Premium selama 1 bulan untuk akses berbagai drama, film,
 longDesc:"Nikmati Wink Premium Private selama 7 hari dengan akses fitur premium.\n• Private Akun 7 Hari\n• Full Garansi\n• Khusus Android (Android Only)\n• Ada Kendala? Segera Hubungi Admin!"
   },  
 
+   {
+    id:"vision", name:"Vision Premium", category:"Aplikasi Premium", price:25000, 
+    // Edit daftar variasi produk ini sesuai kebutuhan.
+    variants:[
+      { id:"paket-1", name:"1 Bulan", price:25000, stock:10, xofCode:"vision", type:"Private", warranty:"Garansi Backfree" }
+    ],
+    icon:"spark", img:"assets/vision.png",
+   shortDesc:"Vision+ Premium Bein 1 Bulan, Full Garansi.",
+    longDesc:"Nikmati tayangan Vision+ Premium Bein eksklusif dengan paket 1 Bulan.\n• Support All Device, bisa nonton dimana saja\n• Garansi Backree, aman & terjamin\n• Private Akun Seller, tinggal login\n• Harga terjangkau, stok terbatas\n• Ada kendala? Segera hubungi Admin!"
+ },
+
   {
     id:"vpn", name:"Vpn Pro", category:"Aplikasi Premium", price:8000, 
     // Edit daftar variasi produk ini sesuai kebutuhan.
@@ -237,6 +248,30 @@ longDesc:"Nikmati VPN Pro Private dengan akses fitur premium untuk koneksi yang 
     shortDesc:"Via Invite, Lifetime, Paket Pro, Garansi.",
     longDesc:"Buat desain grafis memukau dengan mudah menggunakan jutaan elemen dan template premium.\n• Via invite email (email mu diinvite ke pro)\n• Durasi Lifetime Garansi 5 Bulan\n• Ada Kendala ? Segera Hubungi Admin !"
   },
+
+  {
+    id:"wetv", name:"Wetv Premium", category:"Aplikasi Premium", price:15000, 
+    // Edit daftar variasi produk ini sesuai kebutuhan.
+    variants:[
+      { id:"paket-1", name:"Sharing", price:15000, stock:10, xofCode:"wetvshar", type:"Premium", warranty:"Full Garansi" },
+      { id:"paket-2", name:"Private", price:30000, stock:10, xofCode:"wetvpriv", type:"Premium", warranty:"Full Garansi" }
+    ],
+    icon:"spark", img:"assets/youku.png",
+shortDesc:"Youku VIP 1B & 3B Sharing, Full Garansi.",
+longDesc:"Nikmati akses Youku VIP dengan paket 1 Bulan & 3 Bulan.\n• Sharing VIP, Full Garansi\n• Login maksimal 1 device\n• Support All Device, praktis digunakan\n• Harga terjangkau, stok terbatas\n• Ada kendala? Segera hubungi Admin!"
+ },  
+
+  {
+    id:"youku", name:"Youku Vip", category:"Aplikasi Premium", price:10000, 
+    // Edit daftar variasi produk ini sesuai kebutuhan.
+    variants:[
+      { id:"paket-1", name:"1 Bulan", price:10000, stock:10, xofCode:"youku1b", type:"Sharing", warranty:"Full Garansi" },
+      { id:"paket-2", name:"3 Bulan", price:20000, stock:10, xofCode:"youku3b", type:"Sharing", warranty:"Full Garansi" }
+    ],
+    icon:"spark", img:"assets/wetv.png",
+shortDesc:"WeTV Premium 1 Bulan, Sharing & Private, Full Garansi.",
+longDesc:"Nikmati akses WeTV Premium eksklusif selama 1 Bulan.\n• Tersedia pilihan Sharing & Private\n• Support All Device, bisa nonton dimana saja\n• Full Garansi dari Seller\n• Tinggal login tanpa ribet\n• Ada kendala? Segera hubungi Admin!"
+  },  
 
   {
     id:"vidio", name:"Vidio Platinum", category:"Aplikasi Premium", price:30000, 
