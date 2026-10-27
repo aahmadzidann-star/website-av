@@ -90,8 +90,8 @@ const PRODUCTS = [
     id:"gemini", name:"Gemini Pro", category:"Aplikasi Premium", price:20000, 
     // Edit daftar variasi produk ini sesuai kebutuhan.
     variants:[
-      { id:"paket-1", name:"INVITE 18B", price:20000, stock:10, xofCode:"gemini18b", type:"Invite Email", warranty:"Full Garansi" },
-      { id:"paket-2", name:"KODE REDEEM 18B", price:20000, stock:10, xofCode:"gemini18b", type:"Private", warranty:"Garansi Pakai" }
+      { id:"paket-1", name:"INVITE 18B", price:30000, stock:10, xofCode:"gemini18b", type:"Invite Email", warranty:"Full Garansi" },
+      { id:"paket-1", name:"INVITE 3B", price:170000, stock:10, xofCode:"gemini3b", type:"Invite Email", warranty:"Full Garansi" },
     ],
     icon:"streaming", img:"assets/gemini.png",
     shortDesc:"Invite Email Gemini Pro AI & Kode Redeem, Full Garansi.",
