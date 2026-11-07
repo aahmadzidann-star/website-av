@@ -279,8 +279,8 @@ longDesc:"Nikmati akses Youku VIP dengan paket 1 Bulan & 3 Bulan.\n• Sharing V
     id:"vidio", name:"Vidio Platinum", category:"Aplikasi Premium", price:30000, 
     // Edit daftar variasi produk ini sesuai kebutuhan.
     variants:[
-      { id:"paket-1", name:"Mobile", price:30000, stock:10, xofCode:"vidio", type:"Private", warranty:"Full Garansi" },
-      { id:"paket-2", name:"All Device", price:45000, stock:10, xofCode:"vidioall", type:"Private", warranty:"Full Garansi" }
+      { id:"paket-1", name:"Mobile", price:32000, stock:10, xofCode:"vidio", type:"Private", warranty:"Full Garansi" },
+      { id:"paket-2", name:"All Device", price:55000, stock:10, xofCode:"vidioall", type:"Private", warranty:"Full Garansi" }
     ],
     icon:"spark", img:"assets/vidio.png",
     shortDesc:"Private Akun, 1 Bulan, Full Garansi.",
